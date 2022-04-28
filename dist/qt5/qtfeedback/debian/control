@@ -1,0 +1,130 @@
+Source: qtfeedback-opensource-src
+Section: libs
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 9),
+               libpulse-dev,
+               pkg-kde-tools,
+               qtbase5-dev (>= 5.5.1~),
+               qtdeclarative5-dev (>= 5.5.1~),
+               qml-module-qtquick2 (>= 5.5.1~),
+               qtmultimedia5-dev (>= 5.5.1~),
+               xauth,
+               xvfb,
+Build-Depends-Indep: libqt5sql5-sqlite (>= 5.5.1~),
+                     qtbase5-doc-html (>= 5.5.1~),
+                     qtdeclarative5-doc-html (>= 5.5.1~),
+                     qttools5-dev-tools (>= 5.5.1~)
+Standards-Version: 3.9.6
+Homepage: http://qt-project.org/
+Vcs-Bzr: lp:~kubuntu-packagers/kubuntu-packaging/qtfeedback-opensource-src
+Vcs-Browser: https://code.launchpad.net/~kubuntu-packagers/kubuntu-packaging/qtfeedback-opensource-src
+
+Package: libqt5feedback5
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt Feedback module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt Feedback module.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtdeclarative5-qtfeedback-plugin
+Architecture: any
+Multi-Arch: same
+Section: oldlibs
+Depends: qml-module-qtfeedback, ${misc:Depends}
+Description: transitional dummy package for Qt 5 Service Framework QML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This is a transitional dummy package for qml-module-qtfeedback
+ which can be safely removed.
+
+Package: qml-module-qtfeedback
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5feedback5, ${misc:Depends}, ${shlibs:Depends}
+Breaks: qtdeclarative5-qtfeedback-plugin (<< 5.0~git20130529-0ubuntu6~)
+Replaces: qtdeclarative5-qtfeedback-plugin (<< 5.0~git20130529-0ubuntu6~)
+Description: Qt 5 Feedback QML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the Qt Feedback QML module for Qt Declarative.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5feedback5 (= ${binary:Version}), qtbase5-dev, ${misc:Depends}
+Description: Qt 5 Feedback development files
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the header development files used for building Qt 5
+ applications using Qt Feedback library.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-doc
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Feedback documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the documentation for the Qt 5 Feedback
+ module.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-doc-html
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Feedback HTML documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the HTML documentation for the Qt 5 Feedback
+ module.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.
+
+Package: qtfeedback5-dbg
+Priority: extra
+Architecture: any
+Section: debug
+Depends: libqt5feedback5 (= ${binary:Version}), ${misc:Depends}
+Description: Qt Feedback library debugging symbols
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the debugging symbols for the Qt 5 Feedback
+ libraries.
+ .
+ WARNING: This module is not an official part of Qt 5, but instead a git
+ snapshot of an ongoing development. The package is very likely to
+ change in a binary incompatible way, and no guarantees are given.

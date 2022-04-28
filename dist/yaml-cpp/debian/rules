@@ -1,0 +1,64 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+CPPFLAGS :=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS   :=$(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS :=$(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS  :=$(shell dpkg-buildflags --get LDFLAGS)
+
+export DEB_HOST_MULTIARCH CPPFLAGS CFLAGS CXXFLAGS LDFLAGS
+
+ifeq (,$(filter $(DEB_BUILD_ARCH),kfreebsd-amd64 kfreebsd-i386 hurd-i386))
+    DISABLE_PTHREADS=OFF
+else
+    DISABLE_PTHREADS=ON
+endif
+
+override_dh_auto_configure:
+	dh_testdir
+	mkdir build-static; cd build-static; \
+		cmake .. -DCMAKE_INSTALL_PREFIX=/usr \
+				 -DLIB_INSTALL_DIR=/usr/lib/$(DEB_HOST_MULTIARCH) \
+				 -DYAML_CPP_BUILD_TOOLS=ON \
+				 -Dgtest_disable_pthreads=$(DISABLE_PTHREADS)
+	mkdir build-shared; cd build-shared; \
+		cmake .. -DCMAKE_INSTALL_PREFIX=/usr \
+				 -DLIB_INSTALL_DIR=/usr/lib/$(DEB_HOST_MULTIARCH) \
+				 -DBUILD_SHARED_LIBS=ON \
+				 -DYAML_CPP_BUILD_TOOLS=ON \
+				 -Dgtest_disable_pthreads=$(DISABLE_PTHREADS)
+
+override_dh_auto_build:
+	dh_testdir
+	$(MAKE) -C build-static
+	$(MAKE) -C build-shared
+	# It might make sense to also provide the utils in a separate package
+	# $(MAKE) -C build-shared util
+
+override_dh_auto_install:
+	dh_testdir
+	dh_prep
+	$(MAKE) -C build-static install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build-shared install DESTDIR=$(CURDIR)/debian/tmp
+
+override_dh_auto_test:
+	$(MAKE) -C build-static test
+	$(MAKE) -C build-shared test
+
+clean:
+	dh_testdir
+	dh_auto_clean
+	dh_clean
+	rm -rf build-static build-shared
+
+%:
+	dh $@
+
+.PHONY: clean

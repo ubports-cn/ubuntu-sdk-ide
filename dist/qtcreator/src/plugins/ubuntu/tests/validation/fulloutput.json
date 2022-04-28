@@ -1,0 +1,75 @@
+= lint =
+{
+  "error": {
+    "lint_error": {
+      "text": "errorText"
+    }
+  },
+  "info": {
+    "lint_info1": {
+      "text": "OK"
+    },
+    "lint_info2": {
+      "text": "OK"
+    },
+    "lint_info3": {
+      "text": "OK"
+    }
+  },
+  "warn": {}
+}
+
+= desktop =
+{
+  "error": {
+    "desktop_error (test1)": {
+      "link": "http://somelink.com",
+      "text": "Error text for desktop file"
+    }
+  },
+  "info": {
+    "desktop_info (test1)": {
+      "text": "OK"
+    }
+  },
+  "warn": {
+    "desktop_warn (test1)": {
+      "link": "http://somelink.com/warning",
+      "text": "Warning text for desktop file"
+    }
+  }
+}
+
+= security =
+{
+  "error": {},
+  "info": {
+    "security_test1 (test.json)": {
+      "text": "OK"
+    },
+    "security_test2 (test.json)": {
+      "text": "OK"
+    },
+    "security_test3 (test.json)": {
+      "text": "OK"
+    }
+  },
+  "warn": {}
+}
+
+= functional =
+{
+  "error": {},
+  "info": {
+    "functional_test1": {
+      "text": "OK"
+    },
+    "functional_test2": {
+      "text": "OK"
+    },
+    "functional_test3": {
+      "text": "OK"
+    }
+  },
+  "warn": {}
+}

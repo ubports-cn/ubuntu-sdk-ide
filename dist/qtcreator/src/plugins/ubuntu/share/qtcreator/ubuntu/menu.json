@@ -1,0 +1,228 @@
+{
+    "ubuntu": {
+        "name": "Ubuntu",
+        "id": "Ubuntu.Build",
+        "parent": "Build",
+        "group": "ProjectExplorer.Group.Run",
+        "submenu": [
+            {
+                "name": "Run Application on Device",
+                "id": "Ubuntu.Build.Run.Go",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "keysequence": "Ctrl+F12",
+                "deviceRequired": true,
+                "saveRequired": true,
+                "context" : "GoProject.ProjectContext",
+                "actions": [
+                    "%SCRIPTDIRECTORY%/qtc_device_run_go_app %SERIALNUMBER% %FOLDERNAME% %USERNAME%@%IP% %PORT% /home/%USERNAME%/dev_tmp \"%GOBUILDTARGETS%\""
+                ]
+            },
+            {
+                "name": "Close Application on Device",
+                "id": "Ubuntu.Build.CancelRun",
+                "keysequence": "Ctrl+Shift+F12",
+                "projectRequired": true,
+                "deviceRequired": true,
+                "qmlProjectRequired": true,
+                "context": ["GoProject.ProjectContext"],
+                "actions": [
+                    "%SCRIPTDIRECTORY%/qtc_device_close_all_apps %SERIALNUMBER% %DISPLAYNAME%"
+                ]
+            },
+            {
+                "name": "Create Click package",
+                "id": "Ubuntu.Build.CreateClickPackage",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "context": ["UbuntuProject.ProjectContext","QmlProject.ProjectContext","CMakeProject.ProjectContext", "Qt4.Qt4Project"],
+                "saveRequired": true,
+                "needsClickToolchain" : true,
+                "actions": [
+                    {
+                        "metacall": {
+                             "method":"requestBuildProject",
+                             "args":[]
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Install Application on Device",
+                "id": "Ubuntu.Build.PackageInstall.Html",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "context": ["UbuntuProject.ProjectContext","QmlProject.ProjectContext"],
+                "saveRequired": true,
+                "needsClickToolchain" : true,
+                "actions": [
+                    {
+                        "metacall": {
+                             "method":"requestBuildAndInstallProject",
+                             "args":[]
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Install Application on Device",
+                "id": "Ubuntu.Build.PackageInstall.CMake",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "context": ["CMakeProject.ProjectContext", "Qt4.Qt4Project"],
+                "saveRequired": true,
+                "needsClickToolchain" : true,
+                "actions": [
+                    {
+                        "metacall": {
+                             "method":"requestBuildAndInstallProject",
+                             "args":[]
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Install Application on Device",
+                "id": "Ubuntu.Build.PackageInstall.Go",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "deviceRequired": true,
+                "context": ["GoProject.ProjectContext"],
+                "saveRequired": true,
+                "actions": [
+                    "%SCRIPTDIRECTORY%/qtc_goproject_click_createanddeploy %SERIALNUMBER% %FOLDERNAME% %USERNAME%@%IP% %PORT% /home/%USERNAME%/dev_tmp %USERNAME% \"%GOBUILDTARGETS%\""
+                ]
+            },
+            {
+                "name": "Build Application on Device",
+                "id": "Ubuntu.Build.Go",
+                "workingDirectory": "%0/..",
+                "projectRequired": true,
+                "deviceRequired": true,
+                "context": ["GoProject.ProjectContext"],
+                "saveRequired": true,
+                "actions": [
+                    "%SCRIPTDIRECTORY%/qtc_device_buildpackage_go %SERIALNUMBER% %FOLDERNAME% %USERNAME%@%IP% %PORT% /home/%USERNAME%/dev_tmp \"%GOBUILDTARGETS%\""
+                ]
+            },
+            {
+                "name": "Translations",
+                "id": "Ubuntu.Menu.i18n",
+                "submenu": [
+                    {
+                        "name": "Update Translations Template",
+                        "id": "Ubuntu.Menu.i18n.pot",
+                        "projectRequired": true,
+                        "saveRequired": true,
+                        "context": ["UbuntuProject.ProjectContext","QmlProject.ProjectContext","CMakeProject.ProjectContext"],
+                        "actions": [
+                            "%SCRIPTDIRECTORY%/i18n_update_template %DISPLAYNAME% %PROJECTFILES%"
+                        ]
+                    },
+                    {
+                        "name": "Build Translations",
+                        "id": "Ubuntu.Menu.i18n.mo",
+                        "projectRequired": true,
+                        "saveRequired": true,
+                        "context": ["UbuntuProject.ProjectContext","QmlProject.ProjectContext","CMakeProject.ProjectContext"],
+                        "actions": [
+                            "%SCRIPTDIRECTORY%/i18n_build_translations %NAME_FROM_MANIFEST% %PROJECTDIRECTORY%"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "ubuntuhelp": {
+        "name": "Ubuntu",
+        "id": "Ubuntu.Help",
+        "parent": "Help",
+        "submenu": [
+            {
+                "name": "Getting Started",
+                "id": "Ubuntu.Help.GettingStarted",
+                "submenu": [
+                    {
+                        "name": "Go Mobile at developer.ubuntu.com",
+                        "id": "Ubuntu.Help.GettingStarted.GoMobile",
+                        "actions": [
+                            "xdg-open http://developer.ubuntu.com/get-started/gomobile"
+                        ]
+                    },
+                    {
+                        "name": "App Design Guides at design.ubuntu.com",
+                        "id": "Ubuntu.Help.GettingStarted.AppDesignGuides",
+                        "actions": [
+                            "xdg-open http://design.ubuntu.com/apps"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Launchpad",
+                "id": "Ubuntu.Help.Launchpad",
+                "submenu": [
+                    {
+                        "name": "Create an Account",
+                        "id": "Ubuntu.Help.Launchpad.CreateAccount",
+                        "actions": [
+                            "xdg-open https://launchpad.net/+login"
+                        ]
+                    },
+                    {
+                        "name": "Register a Project",
+                        "id": "Ubuntu.Help.Launchpad.RegisterProject",
+                        "actions": [
+                            "xdg-open https://launchpad.net/projects/+new"
+                        ]
+                    },
+                    {
+                        "name": "User Guide",
+                        "id": "Ubuntu.Help.Launchpad.UserGuide",
+                        "actions": [
+                            "xdg-open https://help.launchpad.net"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "ubuntutools": {
+        "name": "Ubuntu",
+        "id": "Ubuntu.Menu",
+        "parent": "Tools",
+        "submenu": [
+             {
+                "name": "Take a screenshot",
+                "id": "Ubuntu.Menu.Screenshot",
+                "keysequence": "Ctrl+Shift+P",
+                "deviceRequired": true,
+                "actions": [
+                    "%SCRIPTDIRECTORY%/device_screenshot %SERIALNUMBER%"
+                ]
+            },
+            {
+                "name": "Mount Device Filesystem",
+                "id": "Ubuntu.Menu.MountDeviceFileSystem",
+                "keysequence": "Ctrl+Shift+F1",
+                "deviceRequired": true,
+                "actions": [
+                    "nautilus ssh://%USERNAME%@%IP%:%PORT%"
+                ]
+            },
+            {
+                "name": "GPG",
+                "id": "Ubuntu.Menu.gpg",
+                "submenu": [
+                    {
+                        "name": "Passwords && Keys",
+                        "id": "Ubuntu.Menu.gpg.seahorse",
+                        "actions": [
+                            "seahorse"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

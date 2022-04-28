@@ -1,0 +1,13 @@
+rpath_nonlinux.diff
+
+# Debian patches.
+botan_system_lib.diff
+always_autotect_qt_versions
+fix_qt_version_autodetection.diff
+missing_header.diff
+fix_documentation_path.diff
+# remove_libexec.diff
+# Ubuntu patches.
+skip_failing_unit_tests.diff
+qml_circular_dependencies.diff
+cmake_ubuntuspecificbits.diff

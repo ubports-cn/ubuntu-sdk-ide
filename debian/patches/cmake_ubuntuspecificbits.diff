@@ -1,0 +1,391 @@
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeprojectmanager.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeprojectmanager.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeprojectmanager.cpp
+@@ -165,10 +165,10 @@ void CMakeManager::createXmlFile(Utils::
+     proc->setWorkingDirectory(buildDirectoryPath);
+     proc->setEnvironment(env);
+ 
+-    const QString srcdir = buildDirectory.exists(QLatin1String("CMakeCache.txt")) ?
+-                QString(QLatin1Char('.')) : sourceDirectory;
++    //const QString srcdir = buildDirectory.exists(QLatin1String("CMakeCache.txt")) ?
++    //            QString(QLatin1Char('.')) : sourceDirectory;
+     QString args;
+-    Utils::QtcProcess::addArg(&args, srcdir);
++    Utils::QtcProcess::addArg(&args, sourceDirectory);
+     Utils::QtcProcess::addArgs(&args, arguments);
+ 
+     proc->setCommand(executable, args);
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmlprojectmanager/qmlproject.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qmlprojectmanager/qmlproject.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmlprojectmanager/qmlproject.cpp
+@@ -288,9 +288,10 @@ Internal::Manager *QmlProject::projectMa
+ bool QmlProject::supportsKit(Kit *k, QString *errorMessage) const
+ {
+     Id deviceType = DeviceTypeKitInformation::deviceTypeId(k);
+-    if (deviceType != ProjectExplorer::Constants::DESKTOP_DEVICE_TYPE) {
++    if (deviceType != ProjectExplorer::Constants::DESKTOP_DEVICE_TYPE &&
++            !deviceType.toString().startsWith(QStringLiteral("UbuntuProjectManager.DeviceTypeId"))) {
+         if (errorMessage)
+-            *errorMessage = tr("Device type is not desktop.");
++            *errorMessage = tr("Device type is not desktop or Ubuntu.");
+         return false;
+     }
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.cpp
+@@ -2024,6 +2024,7 @@ EvalResult *QmakeProFileNode::evaluate(c
+         result->newVarValues[AndroidExtraLibs] = input.readerExact->values(QLatin1String("ANDROID_EXTRA_LIBS"));
+         result->newVarValues[IsoIconsVar] = input.readerExact->values(QLatin1String("ISO_ICONS"));
+         result->newVarValues[QmakeProjectName] = input.readerExact->values(QLatin1String("QMAKE_PROJECT_NAME"));
++        result->newVarValues[UbuntuManifestFile] = input.readerExact->values(QLatin1String("UBUNTU_MANIFEST_FILE"));
+ 
+         result->isDeployable = false;
+         if (result->projectType == ApplicationTemplate) {
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmakeprojectmanager/qmakenodes.h
+@@ -107,7 +107,8 @@ enum QmakeVariable {
+     AndroidPackageSourceDir,
+     AndroidExtraLibs,
+     IsoIconsVar,
+-    QmakeProjectName
++    QmakeProjectName,
++    UbuntuManifestFile
+ };
+ 
+ namespace Internal {
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeconfigitem.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeconfigitem.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeconfigitem.h
+@@ -25,6 +25,8 @@
+ 
+ #pragma once
+ 
++#include "cmake_global.h"
++
+ #include <QByteArray>
+ #include <QList>
+ 
+@@ -34,7 +36,7 @@ namespace ProjectExplorer { class Kit; }
+ 
+ namespace CMakeProjectManager {
+ 
+-class CMakeConfigItem {
++class CMAKE_EXPORT CMakeConfigItem {
+ public:
+     enum Type { FILEPATH, PATH, BOOL, STRING, INTERNAL, STATIC };
+     CMakeConfigItem();
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.cpp
+@@ -568,6 +568,11 @@ bool QtVersionManager::isValidId(int id)
+     return m_versions.contains(id);
+ }
+ 
++void QtVersionManager::triggerDocumentationUpdate()
++{
++    updateDocumentation();
++}
++
+ BaseQtVersion *QtVersionManager::version(int id)
+ {
+     QTC_ASSERT(isLoaded(), return 0);
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qtsupport/qtversionmanager.h
+@@ -63,6 +63,7 @@ public:
+     static void removeVersion(BaseQtVersion *version);
+ 
+     static bool isValidId(int id);
++    static void triggerDocumentationUpdate ();
+ 
+ signals:
+     // content of BaseQtVersion objects with qmake path might have changed
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/plugins.pro
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/plugins.pro
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/plugins.pro
+@@ -56,7 +56,8 @@ SUBDIRS   = \
+     winrt \
+     qmlprofiler \
+     updateinfo \
+-    welcome
++    welcome \
++    ubuntu
+ 
+ DO_NOT_BUILD_QMLDESIGNER = $$(DO_NOT_BUILD_QMLDESIGNER)
+ isEmpty(DO_NOT_BUILD_QMLDESIGNER) {
+Index: ubuntu-sdk-ide/dist/qt5/ubuntu-sdk/ubuntu-sdk.pro
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qt5/ubuntu-sdk/ubuntu-sdk.pro
++++ ubuntu-sdk-ide/dist/qt5/ubuntu-sdk/ubuntu-sdk.pro
+@@ -11,10 +11,10 @@ load(qt_parts)
+ src_uitk_launcher.subdir = ubuntu-ui-toolkit-launcher
+ src_uitk_launcher.depends = sub-src
+ 
+-SUBDIRS += po documentation app-launch-profiler src_uitk_launcher apicheck
++SUBDIRS += po app-launch-profiler src_uitk_launcher apicheck
+ 
+-sub_tests.CONFIG -= no_default_target
+-sub_tests.CONFIG -= no_default_install
++# sub_tests.CONFIG -= no_default_target
++# sub_tests.CONFIG -= no_default_install
+ 
+ # additional 'make test' target required by continuous integration system
+ test.target = test
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.cpp
+@@ -387,6 +387,18 @@ void CMakeProject::runCMake()
+     }
+ }
+ 
++CMakeConfig CMakeProject::activeCmakeCacheForTarget(Target *t)
++{
++    CMakeBuildConfiguration *bc = nullptr;
++    if (t)
++        bc = qobject_cast<CMakeBuildConfiguration *>(t->activeBuildConfiguration());
++
++    if (!bc)
++        return CMakeConfig();
++
++    return bc->buildDirManager()->parsedConfiguration();
++}
++
+ QList<CMakeBuildTarget> CMakeProject::buildTargets() const
+ {
+     BuildDirManager *bdm = nullptr;
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/cmakeprojectmanager/cmakeproject.h
+@@ -27,6 +27,7 @@
+ 
+ #include "cmake_global.h"
+ #include "cmakeprojectnodes.h"
++#include "cmakeconfigitem.h"
+ 
+ #include <projectexplorer/extracompiler.h>
+ #include <projectexplorer/project.h>
+@@ -111,6 +112,8 @@ public:
+ 
+     void runCMake();
+ 
++    static CMakeConfig activeCmakeCacheForTarget (ProjectExplorer::Target *t);
++
+ signals:
+     /// emitted when cmake is running:
+     void parsingStarted();
+Index: ubuntu-sdk-ide/dist/qt5/ubuntu-sdk/src/UbuntuToolkit/menubar.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qt5/ubuntu-sdk/src/UbuntuToolkit/menubar.cpp
++++ ubuntu-sdk-ide/dist/qt5/ubuntu-sdk/src/UbuntuToolkit/menubar.cpp
+@@ -249,11 +249,11 @@ PlatformMenuWrapper::PlatformMenuWrapper
+     , m_target(target)
+     , m_inserted(false)
+ {
+-    connect(m_target, &Menu::visibleChanged, this, &PlatformMenuWrapper::updateVisible);
+-    connect(m_target, &Menu::textChanged, this, &PlatformMenuWrapper::updateText);
+-    connect(m_target, &Menu::enabledChanged, this, &PlatformMenuWrapper::updateEnabled);
+-    connect(m_target, &Menu::iconSourceChanged, this, &PlatformMenuWrapper::updateIcon);
+-    connect(m_target, &Menu::iconNameChanged, this, &PlatformMenuWrapper::updateIcon);
++    connect(m_target.data(), &Menu::visibleChanged, this, &PlatformMenuWrapper::updateVisible);
++    connect(m_target.data(), &Menu::textChanged, this, &PlatformMenuWrapper::updateText);
++    connect(m_target.data(), &Menu::enabledChanged, this, &PlatformMenuWrapper::updateEnabled);
++    connect(m_target.data(), &Menu::iconSourceChanged, this, &PlatformMenuWrapper::updateIcon);
++    connect(m_target.data(), &Menu::iconNameChanged, this, &PlatformMenuWrapper::updateIcon);
+ 
+     syncPlatformMenu();
+ }
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/coreplugin/generatedfile.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/coreplugin/generatedfile.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/coreplugin/generatedfile.cpp
+@@ -161,6 +161,12 @@ bool GeneratedFile::write(QString *error
+ 
+     Utils::FileSaver saver(m_d->path, flags);
+     saver.write(m_d->contents);
++
++    if (attributes() & UserExecutable)  {
++        QFile *createdFile = saver.file();
++        createdFile->setPermissions(createdFile->permissions() | QFileDevice::ExeOwner);
++    }
++
+     return saver.finalize(errorMessage);
+ }
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/coreplugin/generatedfile.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/coreplugin/generatedfile.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/coreplugin/generatedfile.h
+@@ -46,7 +46,9 @@ public:
+                      /* File exists and the user indicated that he wants to keep it */
+                      KeepExistingFileAttribute = 0x8,
+                      /* Force overwriting of a file without asking the user to keep it */
+-                     ForceOverwrite = 0x10
++                     ForceOverwrite = 0x10,
++                     /* Set User executable flag*/
++                     UserExecutable = 0x20
+                    };
+     Q_DECLARE_FLAGS(Attributes, Attribute)
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.cpp
+@@ -70,6 +70,7 @@ bool JsonWizardFileGenerator::setup(cons
+         f.overwrite = tmp.value(QLatin1String("overwrite"), false);
+         f.openInEditor = tmp.value(QLatin1String("openInEditor"), false);
+         f.openAsProject = tmp.value(QLatin1String("openAsProject"), false);
++        f.isUserExecutable = tmp.value(QLatin1String("userExecutable"), false);
+ 
+         f.options = JsonWizard::parseOptions(tmp.value(QLatin1String("options")), errorMessage);
+         if (!errorMessage->isEmpty())
+@@ -146,6 +147,8 @@ Core::GeneratedFile JsonWizardFileGenera
+         attributes |= Core::GeneratedFile::OpenProjectAttribute;
+     if (JsonWizard::boolFromVariant(file.overwrite, expander))
+         attributes |= Core::GeneratedFile::ForceOverwrite;
++    if (JsonWizard::boolFromVariant(file.isUserExecutable, expander))
++        attributes |= Core::GeneratedFile::UserExecutable;
+ 
+     if (file.keepExisting)
+         attributes |= Core::GeneratedFile::KeepExistingFileAttribute;
+@@ -231,6 +234,7 @@ bool JsonWizardFileGenerator::writeFile(
+         if (!file->write(errorMessage))
+             return false;
+     }
++
+     return true;
+ }
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.h
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.h
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/projectexplorer/jsonwizard/jsonwizardfilegenerator.h
+@@ -55,6 +55,7 @@ private:
+         QVariant overwrite = false;
+         QVariant openInEditor = false;
+         QVariant openAsProject = false;
++        QVariant isUserExecutable = false;
+ 
+         QList<JsonWizard::OptionDefinition> options;
+     };
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/valgrind/callgrindtool.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/valgrind/callgrindtool.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/valgrind/callgrindtool.cpp
+@@ -987,17 +987,20 @@ public:
+     bool canRun(RunConfiguration *runConfiguration, Core::Id runMode) const override
+     {
+         Q_UNUSED(runConfiguration);
++        if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return false;
+         return runMode == CALLGRIND_RUN_MODE;
+     }
+ 
+     RunControl *create(RunConfiguration *runConfiguration, Core::Id runMode, QString *errorMessage) override
+     {
+         Q_UNUSED(errorMessage);
++        if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+         return m_tool->createRunControl(runConfiguration, runMode);
+     }
+ 
+     IRunConfigurationAspect *createRunConfigurationAspect(ProjectExplorer::RunConfiguration *rc) override
+     {
++        if (rc->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+         return createValgrindRunConfigurationAspect(rc);
+     }
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/debugger/debuggerruncontrol.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/debugger/debuggerruncontrol.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/debugger/debuggerruncontrol.cpp
+@@ -553,6 +553,8 @@ public:
+         QTC_ASSERT(runConfig, return 0);
+         QTC_ASSERT(mode == DebugRunMode || mode == DebugRunModeWithBreakOnMain, return 0);
+ 
++        if (runConfig->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
++
+         // We cover only local setup here. Remote setups are handled by the
+         // RunControl factories in the target specific plugins.
+         QStringList errors;
+@@ -568,6 +570,8 @@ public:
+         if (!(mode == DebugRunMode || mode == DebugRunModeWithBreakOnMain))
+             return false;
+ 
++        if (runConfig->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return false;
++
+         Runnable runnable = runConfig->runnable();
+         if (runnable.is<StandardRunnable>()) {
+             IDevice::ConstPtr device = runnable.as<StandardRunnable>().device;
+@@ -582,6 +586,7 @@ public:
+ 
+     IRunConfigurationAspect *createRunConfigurationAspect(RunConfiguration *rc) override
+     {
++        if (rc->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+         return new DebuggerRunConfigurationAspect(rc);
+     }
+ };
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/valgrind/memchecktool.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/valgrind/memchecktool.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/valgrind/memchecktool.cpp
+@@ -703,17 +703,20 @@ public:
+     bool canRun(RunConfiguration *runConfiguration, Core::Id mode) const override
+     {
+         Q_UNUSED(runConfiguration);
++        if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return false;
+         return mode == MEMCHECK_RUN_MODE || mode == MEMCHECK_WITH_GDB_RUN_MODE;
+     }
+ 
+     RunControl *create(RunConfiguration *runConfiguration, Core::Id mode, QString *errorMessage) override
+     {
+         Q_UNUSED(errorMessage);
++        if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+         return m_tool->createRunControl(runConfiguration, mode);
+     }
+ 
+     IRunConfigurationAspect *createRunConfigurationAspect(ProjectExplorer::RunConfiguration *rc) override
+     {
++        if (rc->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+         return createValgrindRunConfigurationAspect(rc);
+     }
+ 
+Index: ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmlprofiler/qmlprofilerruncontrolfactory.cpp
+===================================================================
+--- ubuntu-sdk-ide.orig/dist/qtcreator/src/plugins/qmlprofiler/qmlprofilerruncontrolfactory.cpp
++++ ubuntu-sdk-ide/dist/qtcreator/src/plugins/qmlprofiler/qmlprofilerruncontrolfactory.cpp
+@@ -65,6 +65,7 @@ QmlProfilerRunControlFactory::QmlProfile
+ 
+ bool QmlProfilerRunControlFactory::canRun(RunConfiguration *runConfiguration, Core::Id mode) const
+ {
++    if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return false;
+     return mode == ProjectExplorer::Constants::QML_PROFILER_RUN_MODE && isLocal(runConfiguration);
+ }
+ 
+@@ -72,6 +73,9 @@ RunControl *QmlProfilerRunControlFactory
+ {
+     QTC_ASSERT(canRun(runConfiguration, mode), return 0);
+     QTC_ASSERT(runConfiguration->runnable().is<StandardRunnable>(), return 0);
++
++    if (runConfiguration->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
++
+     auto runnable = runConfiguration->runnable().as<StandardRunnable>();
+ 
+     if (runnable.executable.isEmpty()) {
+@@ -114,6 +118,7 @@ RunControl *QmlProfilerRunControlFactory
+ ProjectExplorer::IRunConfigurationAspect *
+ QmlProfilerRunControlFactory::createRunConfigurationAspect(ProjectExplorer::RunConfiguration *rc)
+ {
++    if (rc->id() == "SnapcraftProjectManager.SnapRunConfiguration.Id") return nullptr;
+     return new QmlProfilerRunConfigurationAspect(rc);
+ }
+ 

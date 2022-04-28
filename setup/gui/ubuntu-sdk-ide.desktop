@@ -1,0 +1,13 @@
+[Desktop Entry]
+Exec=ubuntu-sdk-ide %F
+TryExec=ubuntu-sdk-ide
+Icon=${SNAP}/meta/gui/ubuntu-sdk-ide.png
+Type=Application
+Terminal=false
+Name=Ubuntu SDK IDE
+GenericName=Integrated Development Environment
+MimeType=text/x-c++src;text/x-c++hdr;text/x-xsrc;application/x-designer;application/vnd.nokia.qt.qmakeprofile;application/vnd.nokia.xml.qt.resource;application/x-qmlproject;
+Categories=Qt;Development;IDE;
+InitialPreference=9
+Keywords=IDE;Ubuntu SDK IDE;buntu SDK;SDK;Ubuntu Touch;Qt Creator;Qt
+

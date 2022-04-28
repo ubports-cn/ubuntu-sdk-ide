@@ -1,0 +1,56 @@
+yaml-cpp (0.5.2-3) unstable; urgency=medium
+
+  * Fix error in yaml-cpp-config.cmake
+  * Disable gtest's use of pthread on hurd and kfreebsd
+
+ -- Paul Novotny <paul@paulnovo.us>  Mon, 30 Nov 2015 16:53:57 -0500
+
+yaml-cpp (0.5.2-2) unstable; urgency=medium
+
+  * Rename libyaml-cpp0.5 to libyaml-cpp0.5v5 for gcc5 transition
+    (Closes: #791317)
+
+ -- Paul Novotny <paul@paulnovo.us>  Tue, 04 Aug 2015 18:03:35 -0400
+
+yaml-cpp (0.5.2-1) unstable; urgency=medium
+
+  * Update due to yaml-cpp from Google Code to GitHub
+  * Imported Upstream version 0.5.2
+  * Remove patches/fix-unit-test.patch, applied upstream
+  * Remove patches/remove-conflicting-google-libs.patch, applied upstream
+
+ -- Paul Novotny <paul@paulnovo.us>  Thu, 23 Apr 2015 16:40:20 -0400
+
+yaml-cpp (0.5.1+hg20150210-1) experimental; urgency=medium
+
+  [ Andreas Tille ]
+  * Import latest upstream
+  * Fix failing unit tests
+  * Inject package into collab-maint to enable more people contributing
+  * cme fix dpkg-control
+  * debhelper 9
+  
+  [ Paul Novotny ]
+  * Add myself as Uploader
+  * Import latest upstream VCS status
+  * Fix failing unit tests, update version number
+  * Install cmake development files
+
+ -- Andreas Tille <tille@debian.org>  Mon, 09 Feb 2015 13:36:42 +0100
+
+yaml-cpp (0.5.1-1) unstable; urgency=low
+
+  * New upstream release. (Closes: #706708)
+  * Bump Standards-Version to 3.9.4.
+  * libyaml-cpp-dev: remove multiarch path in yaml-cpp.pc to make
+    lintian happy.
+  * debian/copyright: new Format URI.
+  * debian/control: remove Vcs-Svn field.
+
+ -- Lifeng Sun <lifongsun@gmail.com>  Fri, 30 Aug 2013 18:29:05 +0800
+
+yaml-cpp (0.3.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #636985)
+
+ -- Lifeng Sun <lifongsun@gmail.com>  Sun, 03 Jun 2012 23:48:30 +0800

@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS) -Wno-deprecated-declarations -Wno-unused-variable
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS) -Wno-deprecated-declarations -Wno-unused-variable
+export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+export QT_SELECT := qt5
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+# -----------------------------------
+
+%:
+	dh $@ --parallel --fail-missing
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf builddir
+
+override_dh_auto_install:
+	mkdir -p $(CURDIR)/debian/tmp/usr/
+	mkdir -p $(CURDIR)/debian/tmp/usr/bin
+	ln -s /usr/bin/ubuntu-sdk-ide debian/tmp/usr/bin/ubuntu-sdk
+	cp -a $(CURDIR)/*/ubuntu-sdk-ide $(CURDIR)/debian/tmp/usr
+	dh_auto_install --destdir=../../debian/tmp/usr
+
+override_dh_shlibdeps:
+	dh_shlibdeps -l/usr/ubuntu-sdk-ide/lib/qtcreator:/usr/ubuntu-sdk-ide/lib/qtcreator/plugins:/usr/ubuntu-sdk-ide/lib/Qt/lib

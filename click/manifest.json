@@ -1,0 +1,15 @@
+{
+    "architecture": "armhf",
+    "description": "Ubuntu SDK IDE and DevKit",
+    "framework": "ubuntu-sdk-15.04",
+    "hooks": {
+        "sdk": {
+            "apparmor": "apparmor.json",
+            "desktop": "sdk.desktop"
+        }
+    },
+    "maintainer": "Zoltán Balogh <zoltan.balogh@ubuntu.com>",
+    "name": "com.ubuntu.sdk",
+    "title": "Ubuntu SDK IDE and DevKit",
+    "version": "27"
+}

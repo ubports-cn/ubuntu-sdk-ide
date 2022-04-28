@@ -1,0 +1,23 @@
+#!/bin/sh
+
+export PERL5LIB=//opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/share/perl5/:/opt/click.ubuntu.com/com.ubuntu.sdk/23/usr/lib/arm-linux-gnueabihf/perl/5.20.2/
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/lib/arm-linux-gnueabihf
+/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/bin/matchbox-window-manager -theme ../../..//opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/share/themes/Default/ -use_titlebar no &
+
+#XKB config
+#export XKB_CONFIG_ROOT=/usr/share/X11/xkb
+
+# Qt Platform to Mir
+export QT_QPA_PLATFORM=xcb
+#export QTCHOOSER_NO_GLOBAL_DIR=1
+
+
+export  LD_LIBRARY_PATH=/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/lib/arm-linux-gnueabihf:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/lib/qtcreator/:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/qtcreator/lib:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/lib:$LD_LIBRARY_PATH
+
+# Qt Modules
+export QT_PLUGIN_PATH=/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/bin/plugins/
+#export QML2_IMPORT_PATH=/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-dev/qml
+
+exec /opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/bin/qtcreator
+

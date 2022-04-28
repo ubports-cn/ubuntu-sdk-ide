@@ -1,0 +1,347 @@
+#! /usr/bin/perl
+
+# Copyright (C) 2015 The Qt Company Ltd.
+# Contact: http://www.qt.io/licensing/
+#
+# You may use this file under the terms of the 3-clause BSD license.
+# See the file LICENSE from this package for details.
+#
+
+use strict;
+use warnings;
+use POSIX;
+use JSON;
+use File::Path;
+
+# Usage: $0 [instance]
+# - default instance is 'sanitybot'
+# - configure ssh: Host, Port, User, IdentityFile
+# - configure git: git config --global <instance>}.<option> <value>
+# Valid options are:
+#   gerrithost (mandatory)
+#     Target host. The identification is done via SSH.
+#   resthost
+#     The REST base URL of the target host.
+#   restuser
+#     The user name for resthost. If omitted, credentials are expected in .netrc.
+#   restpass
+#     The password for resthost. If omitted, credentials are expected in .netrc.
+#   useremail (mandatory)
+#     Bot's email address. Used to identify invitations and own actions.
+#   inviteonly (default 0)
+#     If this flag is set, the bot will only become active if it is a
+#     requested reviewer. DON'T USE (see TODO).
+#   gitbasedir (mandatory)
+#     Base dir for local GIT clones of the projects.
+#   gitdofetch
+#     Need to fetch the repos or are they local?
+#   worker
+#     The worker is run in a local bare clone of the inspected repository.
+#     The magic string @SHA@ is replaced by the commit to be checked.
+#     Everything it dumps to stdout & stderr will be attached as a comment.
+#     It is supposed to return a score (offset by +10).
+#   excluded (optional)
+#     Space-separated list of exclusions of the form <project> or
+#     <project>:<branch>.
+#   maintainers (optional)
+#     Space-separated list of reviewers to add on "special occasions".
+#   watches (optional)
+#     Space-separated list of path watches. Each watch requires an own
+#     section named watches.<name> with the following keys:
+#       projects (default ".*")
+#         Regular expression specifying the projects to watch.
+#       files
+#         Regular expression specifying the filepaths to watch.
+#       message (optional)
+#         The message to post when this watch triggers.
+#       invite (optional)
+#         Space-separated list of reviewers to add when this watch triggers.
+#   verbose (default 0)
+#     Print progress/result messages.
+
+# TODO
+# - Implement some retry mechanism to deal with network failures
+# - Make inviteonly actually work beyond the initial startup.
+#   See http://code.google.com/p/gerrit/issues/detail?id=1200
+
+my $instance = 'sanitybot';
+$instance = $ARGV[0] if ($#ARGV > -1);
+
+# Doing this is less expensive than calling git repeatedly.
+my %config = ();
+for (`git config -l`) {
+  /^([^=]+)=(.*$)/;
+  $config{$1} = $2;
+}
+
+sub getcfg($;$)
+{
+  my ($key, $def) = @_;
+  my $fkey = $instance.'.'.$key;
+  if (defined $config{$fkey}) {
+    return $config{$fkey};
+  } elsif (@_ > 1) {
+    return $def;
+  } else {
+    die $fkey." not set.\n";
+  }
+}
+
+my $GERRIT_HOST = getcfg 'gerrithost';
+my $USER_EMAIL = getcfg 'useremail';
+my $INVITE_ONLY = getcfg 'inviteonly', 0;
+my $REST_HOST = getcfg 'resthost', undef;
+my $REST_USER = getcfg 'restuser', undef;
+my $REST_PASS = getcfg 'restpass', undef;
+my $GIT_BASEDIR = getcfg 'gitbasedir';
+my $GIT_DO_FETCH = getcfg 'gitdofetch';
+my $WORKER = getcfg 'worker';
+my %EXCLUDED_PROJECTS = map { $_ => 1 } split(/\s+/, getcfg('excluded', ""));
+my @MAINTAINERS = split(/\s+/, getcfg('maintainers', ""));
+my @WATCHES = split(/\s+/, getcfg('watches', ""));
+my $verbose = getcfg 'verbose', 0;
+
+my (%watch_projects, %watch_files, %watch_messages, %watch_invites);
+for my $w (@WATCHES) {
+  my $p = $config{'watches.'.$w.'.projects'};
+  $watch_projects{$w} = defined($p) ? qr/^$p$/ : undef;
+  my $f = $config{'watches.'.$w.'.files'};
+  die "watches.$w.files not set.\n" if (!defined($f));
+  $watch_files{$w} = qr/^$f$/;
+  my $m = $config{'watches.'.$w.'.message'};
+  $watch_messages{$w} = defined($m) ? $m."\n\n" : "";
+  my $i = $config{'watches.'.$w.'.invite'};
+  $watch_invites{$w} = defined($i) ? [ split(/\s+/, $i) ] : [];
+}
+
+my $gerrit_rest;
+if ($REST_HOST) {
+  use Gerrit::REST;
+  $gerrit_rest = Gerrit::REST->new($REST_HOST, $REST_USER, $REST_PASS);
+}
+
+my @gerrit = ("ssh", $GERRIT_HOST, "gerrit");
+
+my %processed = ();
+my %skipfetch = ();
+
+sub printerr($)
+{
+  my ($msg) = @_;
+  die $msg.": execution failed: ".$!."\n" if ($? < 0);
+  die $msg.": command crashed with signal ".$?."\n" if ($? & 127);
+  print STDERR $msg.".\n";
+}
+
+sub process_commit($$$$$)
+{
+  my ($number, $project, $branch, $ref, $rev) = @_;
+
+  if (defined $processed{$ref}) {
+    return;
+  }
+  $processed{$ref} = 1;
+  my $orig_project = $project;
+  $project =~ s,/$,,; # XXX Workaround QTQAINFRA-381
+  my ($score, $verdict);
+  my $message = "";
+  my $iswip = 0;
+  my @invite;
+  my $use_rest = 0;
+  if (defined($EXCLUDED_PROJECTS{$project}) || defined($EXCLUDED_PROJECTS{$project.":".$branch})) {
+    $verbose and print "===== ".strftime("%c", localtime(time()))." ===== excluding commit ".$ref." in ".$project."\n";
+    $score = 1;
+    $verdict = "(skipped)";
+  } else {
+    $verbose and print "===== ".strftime("%c", localtime(time()))." ===== processing commit ".$ref." in ".$project."\n";
+    my $GIT_DIR = $GIT_BASEDIR."/".$project.".git";
+    if (!-d $GIT_DIR) {
+      mkpath $GIT_DIR or die "cannot create ".$GIT_DIR.": ".$!;
+    }
+    chdir $GIT_DIR or die "cannot change to ".$GIT_DIR.": ".$!;
+    if ($GIT_DO_FETCH) {
+      if (!-d $GIT_DIR."/refs/remotes" and `git config remote.origin.url` eq "") {
+        if (!-d $GIT_DIR."/refs") {
+          if (system("git", "init", "--bare")) {
+            printerr "Init of ".$project." failed";
+            return;
+          }
+        }
+        if (system("git", "remote", "add", "origin", 'ssh://'.$GERRIT_HOST.'/'.$project)) {
+          printerr "Adding remote for ".$project." failed";
+          return;
+        }
+      }
+      my @mainlines;
+      if (!defined $skipfetch{$project}) {
+        # Update refs, otherwise the selective fetches start from scratch each time.
+        chomp(@mainlines = `git config remote.origin.fetch`);
+        $skipfetch{$project} = 1;
+      }
+      if (system("git", "fetch", "-f", "--prune", "origin", $ref.":refs/changes/".$number, @mainlines)) {
+        printerr "GIT fetch of ".$ref." from ".$project." failed";
+        return;
+      }
+      $verbose and print "===== ".strftime("%c", localtime(time()))." ===== fetched change\n";
+    }
+
+    my $subject;
+
+    my @watches;
+    for my $w (@WATCHES) {
+      my $wp = $watch_projects{$w};
+      push @watches, $w if (!defined($wp) || $project =~ $wp);
+    }
+    if (@watches) {
+      my @touched = `git show --pretty=\%s --name-only --ignore-submodules -C $rev`;
+      chop(@touched);
+      $subject = shift @touched;
+      shift @touched;  # empty line
+      for my $w (@watches) {
+        for my $file (@touched) {
+          if ($file =~ $watch_files{$w}) {
+            $message .= $watch_messages{$w};
+            push @invite, @{$watch_invites{$w}};
+            last;
+          }
+        }
+      }
+    }
+
+    if (!defined($subject)) {
+        $subject = `git show --pretty=\%s -s $rev`;
+        chop($subject);
+    }
+    if ($subject =~ /^[<[]?[Ww]ip\b|\bWIP\b|\*{3}|^(?:squash|fixup)! |^(.)\1*$/) {
+        $iswip = 1;
+        $message = "Apparently pushing a Work In Progress\n\n".$message;
+    }
+
+    my $worker = $WORKER;
+    $worker =~ s/\@SHA1\@/$rev/g;
+    open VERDICT, $worker." 2>&1 |" or die "cannot run worker: ".$!;
+    {
+      local $/;
+      $verdict = <VERDICT>;
+    }
+    close VERDICT;
+    die "Worker for commit ".$ref." in ".$project." crashed with signal ".$?.".\n" if ($? & 127);
+    $score = $? >> 8;
+    die "Worker returned invalid score ".$score." for commit ".$ref." in ".$project.".\n" if ($score > 20);
+    $score -= 10;
+    if ($REST_HOST) {
+      if (length($verdict) > 50000) {
+        $verdict = "**** Worker produced an unreasonable amount of output. You should ask the bot maintainers for advice.";
+        push @invite, @MAINTAINERS;
+      } else {
+        $use_rest = 1;
+        while ($verdict =~ s/^([^\{][^\n]*\n)//s) {
+          print STDERR "Non-JSON output from worker: $1\n";
+        }
+        $verdict = decode_json($verdict);
+        defined($verdict) or die "cannot decode verdict as JSON\n";
+        $$verdict{labels} = { 'Sanity-Review' => $score, 'Code-Review' => ($iswip ? -2 : 0) };
+      }
+    } else {
+      if (length($verdict) > 20000) {
+        $verdict = substr($verdict, 0, 20000)."\n\n**** Output truncated. Fix the problems above to get more output.\n";
+      }
+    }
+  }
+  if (@invite) {
+    if (system(@gerrit, "set-reviewers", (map { ('-a', $_) } @invite), '--', $rev)) {
+      print "===== ".strftime("%c", localtime(time()))." ===== invitation FAILED\n";
+      printerr("Inviting reviewers to ".$rev." (".$project."/".$ref.") failed");
+    } else {
+      $verbose and print "Invited @invite to ".$rev." (".$project."/".$ref.")\n";
+    }
+  }
+  if ($use_rest) {
+    if (defined($$verdict{message}) || length($message)) {
+      $$verdict{message} = $message.($$verdict{message} || "");
+    }
+    eval {
+      $gerrit_rest->POST("/changes/$number/revisions/$rev/review", $verdict);
+    };
+    if ($@) {
+      print "===== ".strftime("%c", localtime(time()))." ===== verdict NOT submitted\n";
+      print STDERR "Submission of REST verdict for ".$rev." (".$project."/".$ref.") failed: $@\n";
+      return;
+    }
+  } else {
+    $verdict = $message.$verdict;
+    my @args = ();
+#    push @args, ("--project", $project);
+    push @args, ("--project", $orig_project);  # XXX Workaround QTQAINFRA-381
+    push @args, ("--sanity-review", ($score > 0) ? "+".$score : $score);
+    push @args, ("--code-review", $iswip ? -2 : 0);
+    if (length($verdict)) {
+      $verdict =~ s/([\"\\\$\`])/\\$1/g; # ssh doesn`t properly quote the arguments for sh
+      $verdict =~ s/^\s+|\s+$//g;
+      push @args, ("--message", '"'.$verdict.'"');
+    }
+    if (system(@gerrit, "review", @args, $rev)) {
+      print "===== ".strftime("%c", localtime(time()))." ===== verdict NOT submitted\n";
+      printerr("Submission of verdict for ".$rev." (".$project."/".$ref.") failed");
+      return;
+    }
+  }
+  $verbose and print "Submitted verdict for ".$rev." (".$project."/".$ref."): $score\n";
+}
+
+$| = 1; # make STDOUT autoflush
+
+open UPDATES, "-|", @gerrit, "stream-events" or die "cannot run ssh: ".$!;
+
+# Try to ensure that the event streaming has started before we make the snapshot, to avoid a race.
+# Of course, the first connect may be still delayed ...
+sleep(1);
+
+my @query = ("status:open");
+push @query, "reviewer:".$USER_EMAIL if ($INVITE_ONLY);
+open STATUS, "-|", @gerrit, "query", "--format", "JSON", "--current-patch-set", @query or die "cannot run ssh: ".$!;
+REVIEW: while (<STATUS>) {
+  my $review = decode_json($_);
+  defined($review) or die "cannot decode JSON string '".chomp($_)."'\n";
+  my $number = $$review{'number'};
+  my $project = $$review{'project'};
+  my $branch = $$review{'branch'};
+  my $cps = $$review{'currentPatchSet'};
+  if (defined $cps) {
+    my $status = $$review{'status'};
+    if ($status ne 'NEW' and $status ne 'DRAFT') {
+       next REVIEW;
+    }
+    my $ref = $$cps{'ref'};
+    my $revision = $$cps{'revision'};
+    my $approvals = $$cps{'approvals'};
+    if (defined $approvals) {
+      foreach my $appr (@$approvals) {
+        my $by = $$appr{'by'};
+        defined $$by{'email'} or next;   # The reviewer may be gone and thus have no valid mail any more.
+        if ($$by{'email'} eq $USER_EMAIL) {
+          next REVIEW;
+        }
+      }
+    }
+    process_commit($number, $project, $branch, $ref, $revision);
+  }
+}
+close STATUS;
+
+while (<UPDATES>) {
+  my $update = decode_json($_);
+  defined($update) or die "cannot decode JSON string '".chomp($_)."'\n";
+  my $type = $$update{'type'};
+  if (defined($type)) {
+    if ($type eq 'patchset-created') {
+      my $chg = $$update{'change'};
+      my $ps = $$update{'patchSet'};
+      process_commit($$chg{'number'}, $$chg{'project'}, $$chg{'branch'}, $$ps{'ref'}, $$ps{'revision'});
+    } elsif ($type eq 'ref-updated') {
+      my $rup = $$update{'refUpdate'};
+      delete $skipfetch{$$rup{'project'}};
+    }
+  }
+}
+close UPDATES;

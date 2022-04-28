@@ -1,0 +1,28 @@
+Modify /usr/bin/libertine-xmir with an export TMPDIR=/tmp" before the exec line. 
+
+Change the GU in the /etc/ubuntu-touch-session.d/[DEVICE].conf to a smaller value.
+
+Testing from terminal the Xmir session can be started like this:
+    $ Xmir :1 -mirSocket $XDG_RUNTIME_DIR/mir_socket --desktop_file_hint=dialer-app
+
+the display need to be directed to the Xmir
+    $ export DISPLAY=:1
+
+Set the Qt Platform
+    $ export QT_QPA_PLATFORM=xcb
+
+Hack around the library path
+
+# Qt Libs
+    $ export LD_LIBRARY_PATH=/usr/lib/arm-linux-gnueabihf/:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/qtcreator/lib:/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/lib:$LD_LIBRARY_PATH
+    $ export LD_LIBRARY_PATH=/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-dev/lib:$LD_LIBRARY_PATH
+
+
+
+Set Qt Modules
+    $ export QT_PLUGIN_PATH=/opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/bin/plugins/
+
+
+Execute /opt/click.ubuntu.com/com.ubuntu.sdk/current/usr/ubuntu-sdk-ide/bin/qtcreator
+
+

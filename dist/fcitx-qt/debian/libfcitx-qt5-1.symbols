@@ -1,0 +1,162 @@
+libFcitxQt5DBusAddons.so.1 libfcitx-qt5-1 #MINVER#
+ (c++)"FcitxQtConnection::FcitxQtConnection(QObject*)@Base" 1.0.0
+ (c++)"FcitxQtConnection::autoReconnect()@Base" 1.0.0
+ (c++)"FcitxQtConnection::connected()@Base" 1.0.0
+ (c++)"FcitxQtConnection::connection()@Base" 1.0.0
+ (c++)"FcitxQtConnection::disconnected()@Base" 1.0.0
+ (c++)"FcitxQtConnection::endConnection()@Base" 1.0.0
+ (c++)"FcitxQtConnection::isConnected()@Base" 1.0.0
+ (c++)"FcitxQtConnection::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtConnection::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtConnection::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtConnection::serviceName()@Base" 1.0.0
+ (c++)"FcitxQtConnection::setAutoReconnect(bool)@Base" 1.0.0
+ (c++)"FcitxQtConnection::startConnection()@Base" 1.0.0
+ (c++)"FcitxQtConnection::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtConnection::~FcitxQtConnection()@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::format() const@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::operator==(FcitxQtFormattedPreedit const&) const@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::registerMetaType()@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::setFormat(int)@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::setString(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtFormattedPreedit::string() const@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::CloseIM()@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::CommitString(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::DeleteSurroundingText(int, unsigned int)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::EnableIM()@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::FcitxQtInputContextProxy(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::ForwardKey(unsigned int, unsigned int, int)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::UpdateClientSideUI(QString const&, QString const&, QString const&, QString const&, QString const&, int)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::UpdateFormattedPreedit(QList<FcitxQtFormattedPreedit>, int)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtInputContextProxy::~FcitxQtInputContextProxy()@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::enabled() const@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::langCode() const@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::name() const@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::registerMetaType()@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::setEnabled(bool)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::setLangCode(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::setName(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::setUniqueName(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::uniqueName() const@Base" 1.0.0
+ (c++)"FcitxQtInputMethodItem::~FcitxQtInputMethodItem()@Base" 1.0.0
+ (c++|optional|arch=amd64 arm64 armhf)"FcitxQtInputMethodProxy::ConfigureAddon(QString const&)@Base" 1.0.0
+ (c++|optional|arch=arm64 armhf)"FcitxQtInputMethodProxy::ConfigureIM(QString const&)@Base" 1.0.0
+ (c++|optional|arch=armhf powerpc ppc64el)"FcitxQtInputMethodProxy::CreateIC()@Base" 1.0.0
+ (c++|optional|arch=!amd64 !i386)"FcitxQtInputMethodProxy::CreateIC(unsigned int&, unsigned int&, unsigned int&, unsigned int&)@Base" 1.0.0
+ (c++|optional|arch=amd64 arm64 ppc64el)"FcitxQtInputMethodProxy::CreateICv2(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::FcitxQtInputMethodProxy(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 1.0.0
+ (c++|optional|arch=amd64 arm64 armhf)"FcitxQtInputMethodProxy::GetCurrentIM()@Base" 1.0.0
+ (c++|optional|arch=armhf i386)"FcitxQtInputMethodProxy::GetCurrentState()@Base" 1.0.0
+ (c++|optional|arch=!amd64 !arm64)"FcitxQtInputMethodProxy::GetCurrentUI()@Base" 1.0.0
+ (c++|optional|arch=!arm64 !powerpc)"FcitxQtInputMethodProxy::GetIMAddon(QString const&)@Base" 1.0.0
+ (c++|optional|arch=armhf i386)"FcitxQtInputMethodProxy::ReloadAddonConfig(QString const&)@Base" 1.0.0
+ (c++|optional|arch=arm64 i386 powerpc)"FcitxQtInputMethodProxy::SetCurrentIM(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtInputMethodProxy::~FcitxQtInputMethodProxy()@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::langCode() const@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::layout() const@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::name() const@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::registerMetaType()@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::setLangCode(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::setLayout(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::setName(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::setVariant(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::variant() const@Base" 1.0.0
+ (c++)"FcitxQtKeyboardLayout::~FcitxQtKeyboardLayout()@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::FcitxQtKeyboardProxy(QString const&, QString const&, QDBusConnection const&, QObject*)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtKeyboardProxy::~FcitxQtKeyboardProxy()@Base" 1.0.0
+ (c++)"QByteArray::~QByteArray()@Base" 1.0.0
+ (c++)"QDBusError::~QDBusError()@Base" 1.0.0
+ (c++)"QString::~QString()@Base" 1.0.0
+ (c++)"operator<<(QDBusArgument&, FcitxQtFormattedPreedit const&)@Base" 1.0.0
+ (c++)"operator<<(QDBusArgument&, FcitxQtInputMethodItem const&)@Base" 1.0.0
+ (c++)"operator<<(QDBusArgument&, FcitxQtKeyboardLayout const&)@Base" 1.0.0
+ (c++)"operator>>(QDBusArgument const&, FcitxQtFormattedPreedit&)@Base" 1.0.0
+ (c++)"operator>>(QDBusArgument const&, FcitxQtInputMethodItem&)@Base" 1.0.0
+ (c++)"operator>>(QDBusArgument const&, FcitxQtKeyboardLayout&)@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtConnection@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtInputContextProxy@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtInputMethodProxy@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtKeyboardProxy@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtConnection@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtInputContextProxy@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtInputMethodProxy@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtKeyboardProxy@Base" 1.0.0
+ (c++)"vtable for FcitxQtConnection@Base" 1.0.0
+ (c++)"vtable for FcitxQtInputContextProxy@Base" 1.0.0
+ (c++)"vtable for FcitxQtInputMethodProxy@Base" 1.0.0
+ (c++)"vtable for FcitxQtKeyboardProxy@Base" 1.0.0
+libFcitxQt5WidgetsAddons.so.1 libfcitx-qt5-1 #MINVER#
+ (c++)"FcitxQtConfigUIFactory::FcitxQtConfigUIFactory(QObject*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::create(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::test(QString const&)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIFactory::~FcitxQtConfigUIFactory()@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::FcitxQtConfigUIPlugin(QObject*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtConfigUIPlugin::~FcitxQtConfigUIPlugin()@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::FcitxQtConfigUIWidget(QWidget*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::asyncSave()@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::changed(bool)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::icon()@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::saveFinished()@Base" 1.0.0
+ (c++)"FcitxQtConfigUIWidget::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::FcitxQtKeySequenceWidget(QWidget*)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::captureKeySequence()@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::clearKeySequence()@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::isModifierOnlyAllowed()@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::isModifierlessAllowed()@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::keyFcitxToQt(int, unsigned int)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::keyQtToFcitx(int, FcitxQtModifierSide, int&, unsigned int&)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::keySequence() const@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::keySequenceChanged(QKeySequence const&, FcitxQtModifierSide)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::metaObject() const@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::modifierSide()@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::multiKeyShortcutsAllowed() const@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::qt_metacall(QMetaObject::Call, int, void**)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::qt_metacast(char const*)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::setClearButtonShown(bool)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::setKeySequence(QKeySequence const&, FcitxQtModifierSide, FcitxQtKeySequenceWidget::Validation)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::setModifierOnlyAllowed(bool)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::setModifierlessAllowed(bool)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::setMultiKeyShortcutsAllowed(bool)@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::staticMetaObject@Base" 1.0.0
+ (c++)"FcitxQtKeySequenceWidget::~FcitxQtKeySequenceWidget()@Base" 1.0.0
+ (c++)"QByteArray::~QByteArray()@Base" 1.0.0
+ (c++)"QString::~QString()@Base" 1.0.0
+ (c++)"non-virtual thunk to FcitxQtKeySequenceWidget::~FcitxQtKeySequenceWidget()@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtConfigUIFactory@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtConfigUIFactoryInterface@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtConfigUIPlugin@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtConfigUIWidget@Base" 1.0.0
+ (c++)"typeinfo for FcitxQtKeySequenceWidget@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtConfigUIFactory@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtConfigUIFactoryInterface@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtConfigUIPlugin@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtConfigUIWidget@Base" 1.0.0
+ (c++)"typeinfo name for FcitxQtKeySequenceWidget@Base" 1.0.0
+ (c++)"vtable for FcitxQtConfigUIFactory@Base" 1.0.0
+ (c++)"vtable for FcitxQtConfigUIFactoryInterface@Base" 1.0.0
+ (c++)"vtable for FcitxQtConfigUIPlugin@Base" 1.0.0
+ (c++)"vtable for FcitxQtConfigUIWidget@Base" 1.0.0
+ (c++)"vtable for FcitxQtKeySequenceWidget@Base" 1.0.0

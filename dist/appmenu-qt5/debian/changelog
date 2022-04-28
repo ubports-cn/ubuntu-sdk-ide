@@ -1,0 +1,125 @@
+appmenu-qt5 (0.3.0+16.04.20151130-0ubuntu1) xenial; urgency=medium
+
+  * No-change rebuild.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 30 Nov 2015 14:50:17 +0000
+
+appmenu-qt5 (0.3.0+15.10.20150903-0ubuntu1) wily; urgency=medium
+
+  [ Timo Jyrinki ]
+  * Build dep on libinput-dev for Qt 5.5. (LP: #1437192)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 03 Sep 2015 10:15:35 +0000
+
+appmenu-qt5 (0.3.0+15.10.20150722-0ubuntu1) wily; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Fix pixmap types in org.kde.StatusNotifierItem.xml.
+  * Register as service and fix RegisterStatusNotifierItem call to match
+    the specification.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 22 Jul 2015 15:40:55 +0000
+
+appmenu-qt5 (0.3.0+15.04.20150121-0ubuntu4) wily; urgency=medium
+
+  * No-change rebuild against Qt 5.4.2.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 12 Jun 2015 09:21:11 +0300
+
+appmenu-qt5 (0.3.0+15.04.20150121-0ubuntu3) vivid; urgency=medium
+
+  * No-change rebuild against Qt 5.4.1.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Wed, 11 Mar 2015 09:24:41 +0200
+
+appmenu-qt5 (0.3.0+15.04.20150121-0ubuntu2) vivid; urgency=medium
+
+  * No-change rebuild against Qt 5.4.0.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 13 Feb 2015 13:04:53 +0200
+
+appmenu-qt5 (0.3.0+15.04.20150121-0ubuntu1) vivid; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Drop useless Suggests on qtbase packages.
+  * Remove qt5-default build-dependency.
+  * Add implementations of QPlatformMenuItem, QPlatformMenu and
+    QPlatformSystemTrayIcon. (LP: #1209106)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 21 Jan 2015 17:14:36 +0000
+
+appmenu-qt5 (0.3.0+15.04.20141126-0ubuntu1) vivid; urgency=low
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Change the way QKdeTheme is constructed to fit the way presented by
+    the new Qt 5.4.0 version. Make this change conditional so that it's
+    still buildable with earlier releases. (LP: #1394887)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 26 Nov 2014 10:36:43 +0000
+
+appmenu-qt5 (0.3.0+15.04.20141111-0ubuntu1) vivid; urgency=low
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Timo Jyrinki ]
+  * Add libmtdev-dev build dependency (LP: #1379152) (LP: #1379152)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 11 Nov 2014 06:03:20 +0000
+
+appmenu-qt5 (0.3.0+14.10.20140926-0ubuntu1) utopic; urgency=low
+
+  [ Dmitry Shachnev ]
+  * Do nothing if AppMenu is not available, or UBUNTU_MENUPROXY is set
+    to 0 or empty string. (LP: #1362104)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 26 Sep 2014 09:04:23 +0000
+
+appmenu-qt5 (0.3.0+14.10.20140528-0ubuntu1) utopic; urgency=low
+
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 28 May 2014 06:24:03 +0000
+
+appmenu-qt5 (0.3.0+14.04.20140415-0ubuntu1) trusty; urgency=low
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * When working with a Gnome/GTK theme, do the same thing as the gtk2
+    platformtheme plugin does - fetch the SystemIconThemeName (and its
+    fallback) from settings in the system (LP: #1306472)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 15 Apr 2014 10:27:05 +0000
+
+appmenu-qt5 (0.3.0+14.04.20140314-0ubuntu1) trusty; urgency=low
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Fix copyright mischief, add --fail-missing
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 14 Mar 2014 15:04:01 +0000
+
+appmenu-qt5 (0.3.0+14.04.20140305-0ubuntu1) trusty; urgency=low
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Initial release.
+  * Initial version
+  * Fix in a very naiive way the case when a selected, already exported
+    menu wants to be re-exported - which causes problems in dbusmenu
+  * Enable Gnome and KDE theme look and feel when using appmenu-qt5 -
+    it's imperfect, but this approach is the sanest one. For KDE to work
+    we need to distropatch Qt5 into making one of the constructors
+    public. Also, add basic packaging
+  * Enable the possibility of disabling the KDE theme in case we don't
+    have the distro-patch in
+  * Fix header inclusion, bump debian standard
+  * Add copyright headers, add README, fix description and tweak deps
+  * Add profile.d files that would export the QT_QPA_PLATFORMTHEME
+    variable to enable appmenu-qt5 by default on the installed system -
+    if needed
+  * Remove leftover define from debugging
+  * Fix the dependencies
+  * Tweak the descriptions and README a bit
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 05 Mar 2014 13:19:41 +0000

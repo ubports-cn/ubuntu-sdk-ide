@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-ubuntuproject">
+    <sub-class-of type="application/x-qml"/>
+    <comment>Ubuntu Project file</comment>
+    <glob pattern="*.ubuntuhtmlproject"/>
+    <glob pattern="*.ubuntuproject"/>
+  </mime-type>
+  <mime-type type="application/vnd.canonical.click.apparmor">
+    <sub-class-of type="application/json"/>
+    <comment>Ubuntu Apparmor description file</comment>
+    <glob pattern="*.apparmor"/>
+  </mime-type>
+  <mime-type type="application/vnd.canonical.click.manifest">
+      <comment>Ubuntu Manifest file</comment>
+      <sub-class-of type="application/json"/>
+      <glob pattern="manifest.json*"/>
+  </mime-type>
+  <mime-type type="application/x-snapcraft">
+      <comment>Snapcraft project file</comment>
+      <sub-class-of type="application/x-yaml"/>
+      <glob pattern="snapcraft.yaml"/>
+  </mime-type>
+</mime-info>

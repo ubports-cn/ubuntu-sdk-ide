@@ -1,0 +1,11 @@
+ubuntu-sdk-ide.xml usr/share/mime/packages/
+ubuntu-sdk-ide.desktop usr/share/applications
+ubuntu-sdk-ide.png usr/share/icons
+ubuntu-sdk-ide usr/bin/
+qtcreator usr/bin
+usr/bin/ubuntu-sdk
+usr/ubuntu-sdk-ide/bin
+usr/ubuntu-sdk-ide/lib
+usr/ubuntu-sdk-ide/share
+usr/ubuntu-sdk-ide/libexec
+

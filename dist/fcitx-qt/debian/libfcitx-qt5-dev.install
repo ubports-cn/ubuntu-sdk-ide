@@ -1,0 +1,3 @@
+usr/include
+usr/lib/*/libFcitxQt5*.so
+usr/share/cmake/FcitxQt5*

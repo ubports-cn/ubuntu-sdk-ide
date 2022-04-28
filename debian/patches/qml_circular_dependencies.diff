@@ -1,0 +1,48 @@
+diff --git a/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.cpp b/src/libs/qmljs/qmljsplugindumper.cpp
+index 7d13482..8ef89eb 100644
+--- a/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.cpp
++++ b/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.cpp
+@@ -458,19 +458,27 @@ QString PluginDumper::buildQmltypesPath(const QString &name) const
+ void PluginDumper::loadDependencies(const QStringList &dependencies,
+                                     QStringList &errors,
+                                     QStringList &warnings,
+-                                    QList<FakeMetaObject::ConstPtr> &objects) const
++                                    QList<FakeMetaObject::ConstPtr> &objects,
++                                    QSet<QString> *visited) const
+ {
++    if (dependencies.isEmpty())
++        return;
++
++    QScopedPointer<QSet<QString>> visitedPtr(visited ? visited : new QSet<QString>());
++
+     QStringList dependenciesPaths;
+     QString path;
+     for (const QString &name: dependencies) {
+         path = buildQmltypesPath(name);
+         if (!path.isNull())
+             dependenciesPaths << path;
++        visitedPtr->insert(name);
+     }
+     QStringList newDependencies;
+     loadQmlTypeDescription(dependenciesPaths, errors, warnings, objects, 0, &newDependencies);
++    newDependencies = (newDependencies.toSet() - *visitedPtr).toList();
+     if (!newDependencies.isEmpty())
+-        loadDependencies(newDependencies, errors, warnings, objects);
++        loadDependencies(newDependencies, errors, warnings, objects, visitedPtr.take());
+ }
+ 
+ void PluginDumper::loadQmltypesFile(const QStringList &qmltypesFilePaths,
+diff --git a/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.h b/src/libs/qmljs/qmljsplugindumper.h
+index 7d29e6e..586275f 100644
+--- a/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.h
++++ b/dist/qtcreator/src/libs/qmljs/qmljsplugindumper.h
+@@ -83,7 +83,8 @@ private:
+     void loadDependencies(const QStringList &dependencies,
+                           QStringList &errors,
+                           QStringList &warnings,
+-                          QList<LanguageUtils::FakeMetaObject::ConstPtr> &objects) const;
++                          QList<LanguageUtils::FakeMetaObject::ConstPtr> &objects,
++                          QSet<QString> *visited=0) const;
+     void loadQmltypesFile(const QStringList &qmltypesFilePaths,
+                           const QString &libraryPath,
+                           QmlJS::LibraryInfo libraryInfo);

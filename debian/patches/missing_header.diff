@@ -1,0 +1,12 @@
+Index: qtcreator/dist/qtcreator/src/libs/ssh/sshcryptofacility.cpp
+===================================================================
+--- qtcreator.orig/dist/qtcreator/src/libs/ssh/sshcryptofacility.cpp
++++ qtcreator/dist/qtcreator/src/libs/ssh/sshcryptofacility.cpp
+@@ -35,6 +35,7 @@
+ 
+ #include <botan/botan.h>
+ #include <botan/cbc.h>
++#include <botan/ctr.h>
+ #include <botan/dsa.h>
+ #include <botan/pkcs8.h>
+ #include <botan/pubkey.h>

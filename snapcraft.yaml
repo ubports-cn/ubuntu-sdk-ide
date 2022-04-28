@@ -1,0 +1,23 @@
+name: ubuntu-sdk-ide
+version: "0"
+summary: Integrated Development Environment for Ubuntu Touch
+description: |
+ Qt Creator is a lightweight, cross-platform integrated development environment (IDE) designed to make
+ development with the Qt application framework even faster and easier. 
+ 
+ This package contains the Qt Creator and the Ubuntu plugins providing deeper integration for developing
+ applications for Ubuntu using the Ubuntu UI Toolkit. It also introduces an Ubuntu themed welcome screen.
+confinement: devmode
+
+apps:
+    ubuntu-sdk-ide:
+        command: desktop-launch $SNAP/usr/ubuntu-sdk-ide/bin/qtcreator.sh -noload Ubuntu
+        plugs: [unity7, opengl, network-bind]
+
+parts:
+    ubuntu-sdk-ide:
+        plugin: nil
+        stage-packages:
+            - ubuntu-sdk-ide
+        # https://wiki.ubuntu.com/snapcraft/parts
+        after: [desktop-glib-only]

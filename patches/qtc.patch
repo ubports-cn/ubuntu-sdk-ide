@@ -1,0 +1,31 @@
+--- qtcreator/src/plugins/qtsupport/qtversionmanager.cpp	2015-10-21 17:53:48.000000000 +0200
++++ qtcreator/src/plugins/qtsupport/qtversionmanager.cpp	2015-10-22 11:50:21.323455563 +0200
+@@ -458,7 +458,7 @@
+
+     QMap<QString, int> currentAutoVersions;
+     for (QMap<int, BaseQtVersion *>::const_iterator i = m_versions.begin(); i != m_versions.end(); ++i) {
+-        if (i.value()->isAutodetected()) {
++        if (i.value()->isAutodetected() && !i.value()->autodetectionSource().startsWith(QLatin1String("SDK."))) {
+             currentAutoVersions.insert(i.value()->qmakeCommand().toString(), i.key());
+         }
+     }
+
+--- qtcreator/src/libs/utils/buildablehelperlibrary.cpp	2015-08-18 12:02:51.000000000 +0200
++++ qtcreator/src/libs/utils/buildablehelperlibrary.cpp	2015-11-02 12:36:14.974481823 +0100
+@@ -88,8 +88,15 @@
+ 
+         if (dir.exists(qmake)) {
+             const QString qmakePath = dir.absoluteFilePath(qmake);
+-            if (isQmake(qmakePath))
++            if (isQmake(qmakePath)) {
++                QFileInfo fi(qmakePath);
++                if (BuildableHelperLibrary::isQtChooser(fi)) {
++                    const QString qtChooserPath = BuildableHelperLibrary::qtChooserToQmakePath(fi.symLinkTarget());
++                    if (!qtChooserPath.isEmpty())
++                        return FileName::fromString(qtChooserPath);
++                }
+                 return FileName::fromString(qmakePath);
++            }
+         }
+
+         // Prefer qmake-qt5 to qmake-qt4 by sorting the filenames in reverse order.

@@ -1,0 +1,79 @@
+Description: Use the system botan library instead of the bundled one.
+Author: Felix Geyer <debfx@ubuntu.com>
+Last-Reviewed: 2014-08-19
+
+---
+ src/libs/ssh/sshcryptofacility.cpp       |    5 +++++
+ src/libs/ssh/sshcryptofacility_p.h       |    2 ++
+ src/libs/ssh/sshkeyexchange.cpp          |    6 ++++++
+ src/libs/ssh/sshkeygenerator.cpp         |    5 +++++
+ src/libs/ssh/sshkeypasswordretriever_p.h |    1 +
+ 5 files changed, 19 insertions(+)
+
+--- a/dist/qtcreator/src/libs/ssh/sshcryptofacility.cpp
++++ b/dist/qtcreator/src/libs/ssh/sshcryptofacility.cpp
+@@ -34,6 +34,11 @@
+ #include "sshpacket_p.h"
+ 
+ #include <botan/botan.h>
++#include <botan/cbc.h>
++#include <botan/dsa.h>
++#include <botan/pkcs8.h>
++#include <botan/pubkey.h>
++#include <botan/rsa.h>
+ 
+ #include <QDebug>
+ #include <QList>
+--- a/dist/qtcreator/src/libs/ssh/sshcryptofacility_p.h
++++ b/dist/qtcreator/src/libs/ssh/sshcryptofacility_p.h
+@@ -27,9 +27,11 @@
+ #define SSHCRYPTOFACILITY_P_H
+ 
+ #include <botan/botan.h>
++#include <botan/hmac.h>
+ 
+ #include <QByteArray>
+ #include <QScopedPointer>
++#include <QSharedPointer>
+ 
+ namespace QSsh {
+ namespace Internal {
+--- a/dist/qtcreator/src/libs/ssh/sshkeyexchange.cpp
++++ b/dist/qtcreator/src/libs/ssh/sshkeyexchange.cpp
+@@ -34,6 +34,12 @@
+ #include "sshincomingpacket_p.h"
+ 
+ #include <botan/botan.h>
++#include <botan/dh.h>
++#include <botan/dl_group.h>
++#include <botan/dsa.h>
++#include <botan/pem.h>
++#include <botan/pubkey.h>
++#include <botan/rsa.h>
+ 
+ #include <string>
+ 
+--- a/dist/qtcreator/src/libs/ssh/sshkeygenerator.cpp
++++ b/dist/qtcreator/src/libs/ssh/sshkeygenerator.cpp
+@@ -32,6 +32,11 @@
+ #include "sshpacket_p.h"
+ 
+ #include <botan/botan.h>
++#include <botan/der_enc.h>
++#include <botan/dsa.h>
++#include <botan/pem.h>
++#include <botan/pkcs8.h>
++#include <botan/rsa.h>
+ 
+ #include <QDateTime>
+ #include <QInputDialog>
+--- a/dist/qtcreator/src/libs/ssh/sshkeypasswordretriever_p.h
++++ b/dist/qtcreator/src/libs/ssh/sshkeypasswordretriever_p.h
+@@ -27,6 +27,7 @@
+ #define KEYPASSWORDRETRIEVER_H
+ 
+ #include <botan/botan.h>
++#include <botan/ui.h>
+ 
+ #include <string>
+ 

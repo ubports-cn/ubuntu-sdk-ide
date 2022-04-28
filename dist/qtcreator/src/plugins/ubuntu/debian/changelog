@@ -1,0 +1,1690 @@
+qtcreator-plugin-ubuntu (3.5.0+16.10.20160512-0ubuntu1) yakkety; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Remove devel and rc and use generic ubuntu channels. Fixes LP:
+    #1580770 (LP: #1580770)
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 12 May 2016 11:57:35 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160419-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Added scrollview to Ubuntu welcome page Replaced Newsbox with a link
+    to the developer blog Added a link on the welcome page to open the
+    UITK gallery
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Tue, 19 Apr 2016 12:19:32 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160415-0ubuntu1) xenial; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Fix templates for 1.3 UITK
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Fri, 15 Apr 2016 12:56:56 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160323-0ubuntu2) xenial; urgency=medium
+
+  * Lower ubuntu-emulator Recommends: to a Suggests:, as ubuntu-emulator is in
+    multiverse.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed, 13 Apr 2016 14:43:09 +0200
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160323-0ubuntu1) xenial; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Use the qmake project of the Showcase galler
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Wed, 23 Mar 2016 09:24:34 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160321.1-0ubuntu1) xenial; urgency=medium
+
+  [ Marcus Tomlinson ]
+  * Don't expect .pot file to exist, this breaks CMake when no
+    translations are present (LP: #1538419)
+
+  [ Zoltán Balogh ]
+  * Use dpkg --print-architecture instead of uname to discover arch type
+    (LP: #1558413)
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Mon, 21 Mar 2016 14:35:36 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160303-0ubuntu1) xenial; urgency=medium
+
+  * Remove the qmlproject wizard. It is deprecated and should not be
+    used anymore. removed:
+    share/qtcreator/templates/wizards/ubuntu/share/displayName.qmlprojec
+    t share/qtcreator/templates/wizards/ubuntu/simple-app-qmlproject/
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/Main.qml share/qtcreator/templates/wizards/ubuntu/simple-
+    app-qmlproject/Makefile
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/displayName.desktop
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/displayName.png
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/ share/qtcreator/templates/wizards/ubuntu/simple-
+    app-qmlproject/tests/autopilot/
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/displayName/
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/displayName/__init__.py
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/displayName/tests/
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/displayName/tests/__init__.py
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/displayName/tests/test_main.py
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/autopilot/run
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/qml/
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/tests/qml/tst_main.qml
+    share/qtcreator/templates/wizards/ubuntu/simple-app-
+    qmlproject/wizard.xml
+
+ -- Benjamin Zeller <ci-train-bot@canonical.com>  Thu, 03 Mar 2016 14:29:58 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160225-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1537550 "Manifest changes are not saved before publishing
+    regardless of setting" Fix Bug lp:1534509 "Please attach your device
+    - which one?" Add support for executing custom scope runners on the
+    phone (LP: #1534509, #1537550)
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 25 Feb 2016 14:48:23 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160118-0ubuntu1) xenial; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Adjust HTML5 template to mirror the QML sample app
+  * Use different qmlscene and different UITK path with difefrent
+    packaging of the plugin
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Mon, 18 Jan 2016 11:48:09 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20160114.1-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Add used Qt version and project libraries to LD_LIBRARY_PATH for all
+    project types
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 14 Jan 2016 11:29:45 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151204.1-0ubuntu1) xenial; urgency=medium
+
+  * Fix possible crash in ubuntulocalrunconfiguration.cpp Recreate SSH
+    keys when they are too weak
+
+ -- Benjamin Zeller <ci-train-bot@canonical.com>  Fri, 04 Dec 2015 09:25:58 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151127-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1476647 local_create_emulator chowns with group name same
+    as user name (LP: #1476647)
+  * Make scopes run again Fix Bug lp:1427133 "Build and validate click
+    package button disabled without explanation" (LP: #1427133)
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Fri, 27 Nov 2015 13:47:26 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151126-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1494566 "Tools/Ubuntu/Showcase gallery is not working
+    after updating my SDK" Fix Bug lp:1499135 "Cannot deploy a scope
+    onto phone due to reserved policy group 'debug'" Fix Bug lp:1512072
+    "qtc_chroot_wrapper.py craches when build in non ASCII build dir"
+    Fix Bug lp:1519385: Latest framework is not presented as the default
+    (workaround) Move image files into our own plugin so we do not clash
+    with the scaling image provider of UITK (LP: #1512072, #1519385,
+    #1494566, #1499135)
+  * Migrate plugin to UITK 1.3
+
+  [ Zoltán Balogh ]
+  * Change exec line in desktop files. Fixes LP: #1495062 (LP: #1495062)
+  * Correct the READMe instruction of the webapp template. Fixes LP:
+    #1517196 (LP: #1517196)
+  * Migrate the templates to 1.3 UITK
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 26 Nov 2015 05:24:55 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151116.2-0ubuntu1) xenial; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Remove the qmake extras as it has its own project now removed:
+    debian/ubuntu-sdk-qmake-extras.install ubuntu-click-tools.prf
+    ubuntu-click.prf
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Mon, 16 Nov 2015 09:27:56 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151113-0ubuntu1) xenial; urgency=medium
+
+  [ Marcus Tomlinson ]
+  * Fix mistake in XML scope templates where only odd numbered XML nodes
+    where being read, causing a blank top level "City, Country" title
+    (second node in XML)
+
+ -- Benjamin Zeller <ci-train-bot@canonical.com>  Fri, 13 Nov 2015 11:47:07 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+16.04.20151111.1-0ubuntu1) xenial; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix crash when there are no devices in the settings Fix possible
+    crash when a kit has not toolchain set Disable debug output
+  * Start click-chroot-agent from the install path when packaged as
+    ubuntu sdk-ide
+
+  [ Marcus Tomlinson ]
+  * Fixed scopes templates: OpenWeatherMap now requires an APPID key for
+    all requests. Fixed "'cerr' was not declared in this scope" error in
+    query.cpp. Fixed import in test-scope.py. (LP: #1508418)
+
+ -- Benjamin Zeller <ci-train-bot@canonical.com>  Wed, 11 Nov 2015 15:44:59 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+15.10.20150910-0ubuntu1) wily; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1488402 "Unify settings directories" Cleanup old scripts
+    Cleanup unused constants Fix CMake project execution on remote
+    devices (LP: #1488402)
+
+ -- Zoltan Balogh <zoltan.balogh@canonical.com>  Thu, 10 Sep 2015 08:47:43 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+15.10.20150902-0ubuntu1) wily; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fixes Bug lp:1488085 "Navigating in the Add Security Policies window
+    is broken with keyboard" Fixes Bug lp:1489344 "Install on device is
+    broken" Fixes Bug lp:1489567 "Ubuntu gallery can not be openend"
+    Catch "permission denied" error if opening syslog is not allowed Fix
+    Bug lp:1480771 "Wrong directory used for translation" Fix Bug
+    lp:1443351 ".desktop file is not translated for qmake based
+    projects" Fix Bug lp:1479581 "Debug helper is disabled by default"
+    Fix Bug lp:1481325 "fix i18n integration in qmake template" (LP:
+    #1489344, #1480771, #1481325, #1488085, #1443351, #1479581,
+    #1489567)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 02 Sep 2015 15:32:19 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+15.10.20150817-0ubuntu2) wily; urgency=medium
+
+  * No-change rebuild against final Qt Creator 3.5.0.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 20 Aug 2015 20:20:09 +0300
+
+qtcreator-plugin-ubuntu (3.5.0+15.10.20150817-0ubuntu1) wily; urgency=medium
+
+  [ Timo Jyrinki ]
+  * Remove unneeded Qt Script and Qt Quick 1 (LP: #1485539) (LP:
+    #1485539)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 17 Aug 2015 10:44:47 +0000
+
+qtcreator-plugin-ubuntu (3.5.0+15.10.20150812-0ubuntu1) wily; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Removed modes depending on deprected QtWebKit mode, also most of
+    them were not really useful lp:1457473 Fix Bug lp:1462312 "The
+    plugin doesn't remember Run Configuration settings at all" Refactor
+    ubuntu-sdk plugin to compile against the QtC upstream master branch
+    (LP: #1462312, #1457473, #1450773, #1461037)
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 12 Aug 2015 12:06:45 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.10.20150720-0ubuntu1) wily; urgency=medium
+
+  [ Alexandre Abreu ]
+  * Fix html5 application launch for 15.04 & policy 1.3 (LP: #1471383)
+
+  [ Benjamin Zeller ]
+  * Add settings page for project configuration default values
+  * Remove QtScript dependency from the manifest.json parser Fix Bug
+    lp:1461026 "Kits creation for a project should match targeted
+    framework" Fix Bug lp:1461014 "Match application name to click
+    package name" Fix Bug lp:1461019 "Default in project creation dialog
+    should be a qmake project" Fix Bug lp:1340061: "Some dialogs have
+    unreadable (too small) text" (LP: #1461026, #1461019, #1340061,
+    #1461014)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 20 Jul 2015 12:53:17 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.10.20150616-0ubuntu1) wily; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1362028 "SDK not able to provide further hint about
+    missing apparmor policy" (LP: #1362028)
+  * Fix Bug lp:1455566 "ubuntu sdk references obsolete system-image
+    channel names" (LP: #1455566)
+  * Fix bug lp:1456627 "Almost unusuable while non-Ubuntu device
+    connected through adb" (LP: #1456627)
+
+  [ Marcus Tomlinson ]
+  * Split scope template into "14.10" and "Current" variations (LP:
+    #1464108)
+
+  [ Nicholas Skaggs ]
+  * Update qml based templates to best practicies
+
+  [ Niklas Wenzel ]
+  * Allow parallel builds using "dpkg-buildpackage -jN", reducing build
+    time on multi-core CPUs (LP: #1465018)
+  * Fix building translations (LP: #1257313)
+
+  [ nskaggs ]
+  * Update qml based templates to best practicies
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 16 Jun 2015 14:48:19 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.10.20150521-0ubuntu1) wily; urgency=medium
+
+  [ Marcus Tomlinson ]
+  * Refactored the scope templates to be more simplistic and
+    comprehensible: Reduced directory structure to as few folders as
+    possible Renamed scope ini file to <scope-name>.ini Added a <scope-
+    name>-settings.ini Cleaned out unnecessary complexities from source
+    and CMake files More descriptive comments and variable names Updated
+    tests to use python3-scope-harness Removed cmake/ modules folder
+    (SDK now includes cmake-extras) Allow scope template to build with
+    gcc > 4.9 Added "Keywords" key to scope ini
+
+  [ Zoltán Balogh ]
+  * Add cmake-extras
+  * add python3-scope-harness to dependencies
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 21 May 2015 09:24:25 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.10.20150508-0ubuntu1) wily; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix lp:1357237 "Inconsistent QML main files" Fix lp:1280631 "SDK
+    should have same restrictions on version number" Fix lp:1450481
+    "Default password not displayed in emulator creation wizard" (LP:
+    #1450481, #1357237, #1280631)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 08 May 2015 14:24:04 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.10.20150507-0ubuntu1) wily; urgency=medium
+
+  [ Alexandre Abreu ]
+  * Add autopilot and unit tests templates for HTML5 simple application
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1402484 "A typo in the scope template readme file" Fix
+    bug lp:1427138 and lp:1404672, add schroot to the deps Fix Bug
+    lp:1450477 "Typo in initial startup wizard" (LP: #1404672, #1427138,
+    #1402484, #1450477)
+  * Remove either unused or dangerous functions and scripts. (LP:
+    #1324008, #1366785, #1388655)
+  * Show Desktop Kit in chroot setup page ( lp:1366934 lp:1369828) Fix
+    Bug lp:1400842 "devices panel: text says refresh but button is
+    redetect" (LP: #1400842, #1369828, #1366934)
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Zoltán Balogh ]
+  * Set the title of the tamplate apps to the app name. Fixes LP:
+    #1365309 (LP: #1365309)
+  * removed obsolate patch
+  * removed obsolate patch removed: debian/patches/
+    debian/patches/series debian/patches/u-d-f_syntax.diff
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 07 May 2015 06:26:00 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150420.1-0ubuntu2) vivid-proposed; urgency=medium
+
+  * Updating to use new u-d-f syntax (LP: #1447569)
+
+ -- Sergio Schvezov <sergio.schvezov@canonical.com>  Thu, 23 Apr 2015 08:37:13 -0300
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150420.1-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1446062, RSync failes if translation dir is not created
+    (LP: #1446062)
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 20 Apr 2015 21:31:37 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150417-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1445372, mo files are wrongly deleted by the packaging
+    step Fix reversed APPID in the Makefile (LP: #1445372)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 17 Apr 2015 09:46:04 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150416-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Rename the template.pot file to <projectname>.pot lp:1444911 Make
+    sure qml projects run buildsteps when creating a click package from
+    the publish page lp:1444908 Disable the translations menu for qml
+    projects lp:1444913 (LP: #1444913, #1444908, #1444911)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 16 Apr 2015 11:30:36 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150415-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Support framework 15.04 Fix small issue in the templates
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 15 Apr 2015 15:12:10 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150413.1-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1391527 Adding UI to show the supported frameworks for
+    the emulator and the phone Autocreate Kits for the devices depending
+    on the framework they support (LP: #1391527)
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+  [ Pete Woods ]
+  * Use absolute path to refer to POT file - fixes dependency chain.
+    Fixes LP: #1443308 (LP: #1443308)
+
+  [ Zoltán Balogh ]
+  * Change the order of the parameters in thge usage hint. Fixes LP:
+    #1441475 (LP: #1441475)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Mon, 13 Apr 2015 11:42:04 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150409-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Prevent leaking mounts with click chroot as much as possible
+
+  [ CI Train Bot ]
+  * Use the hook name in the import. Fixes LP: #1437682 (LP: #1437682)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 09 Apr 2015 09:19:49 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150401-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Workaround to hide non click frameworks returned by the store API as
+    available lp:1436470 (LP: #1436470)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 01 Apr 2015 15:30:52 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150331-0ubuntu1) vivid; urgency=medium
+
+  [ Zoltán Balogh ]
+  * Use the hook name in the import. Fixes LP: #1437682 (LP: #1437682)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 31 Mar 2015 16:49:26 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150319.1-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1426315 "Found unusual policy group" (LP: #1426315)
+
+  [ CI Train Bot ]
+  * New rebuild forced.
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Thu, 19 Mar 2015 10:15:53 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150224-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Use more verbose strings to explain the fat packaging wizard. Fix a
+    uncatched exception in click_chroot_wrapper.py lp:1424043. Do not
+    close prespawned sessions in click_chroot_wrapper when the. script
+    receives a SIGTERM (LP: #1424043)
+
+  [ Michael Zanetti ]
+  * fix some issues with high-res in DevicePage (LP: #1418062)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Tue, 24 Feb 2015 08:49:39 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150220-0ubuntu1) vivid; urgency=medium
+
+  [ Michael Zanetti ]
+  * dynamically adjust columns sizes in click target table
+  * make the click output scroll to bottom automatically
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Fri, 20 Feb 2015 10:50:20 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150218-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Clean up the deploy dir lp:1420526. Support fat packaging for qmake
+    based projects (LP: #1420526)
+
+ -- CI Train Bot <ci-train-bot@canonical.com>  Wed, 18 Feb 2015 17:27:18 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150209-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Make use of the backend in the qmake+backend app template. Fix
+    passing of the "CLICK_NO_LOCAL_MIRROR" env var to the chroot
+    creation script .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 09 Feb 2015 12:39:40 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150207-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Filter new devices by architecture. Only valid architectures can be
+    registered.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Sat, 07 Feb 2015 04:12:35 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150206-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Add support to run more than one click maintenance task in the
+    chroot dialog.So updating multiple chroots is not asking back for
+    every single chroot.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 06 Feb 2015 10:29:23 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150205.1-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix devicespage dialogs. Add a switch to enable/disable the useage
+    of local mirrors .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 05 Feb 2015 11:20:08 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150205-0ubuntu1) vivid; urgency=medium
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Leo Arias ]
+  * Added a qttest to simpel-app-qmlproject template.
+  * Updated the autopilot test template.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 05 Feb 2015 04:36:05 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150202-0ubuntu1) vivid; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Make sure we do not return broken sessions from the click-chroot-
+    agent
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 02 Feb 2015 12:49:44 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150130-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Refactoring of the publish Tab
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 30 Jan 2015 06:05:59 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150128.2-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Improve qmake templates by refactoring complicated parts into qmake
+    feature files distributed by a package from the archive
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 28 Jan 2015 13:14:58 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150127-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * More descriptive messages when waiting for the device to be ready
+    LP:#1400843 (LP: #1400843)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 Jan 2015 12:51:55 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150123-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Automatically check if upgrades for chroots are available when
+    QtCreator is started
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 23 Jan 2015 11:19:31 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150119-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Introduce ubuntu-sdk-qmake-extras package
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 19 Jan 2015 09:07:10 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150114-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1409815 "Manifest file with invalid syntax reported as
+    missing" -Automatically update default runconfigurations when the
+    manifest file changes (LP: #1409815)
+
+  [ Bin Li ]
+  * Skip the incomplete emulator. Fixes LP: #1409596 (LP: #1409596)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 14 Jan 2015 11:11:03 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150112-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add cli interface to the chroot agent
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 12 Jan 2015 11:55:43 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20150108-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Bug #1400741: API tab links to the wrong version of the API. Add
+    click-chroot-agent, a user session daemon that preloads chroot
+    sessions. Adding support for new package naming scheme (LP:
+    #1400741)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 Jan 2015 08:03:05 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141219-0ubuntu1) vivid; urgency=low
+
+  [ Zoltán Balogh ]
+  * Revert the deprecation of the ubuntu-html5-launcher for html5 apps
+    because it needs to be synced with an apparmor update
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 19 Dec 2014 03:50:35 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141217-0ubuntu1) vivid; urgency=low
+
+  [ Alexandre Abreu ]
+  * deprecate the ubuntu-html5-launcher for html5 app in favor of the
+    webapp-conatiner (LP: #1388988)
+  * Add webview to basic template policy
+
+  [ Xavi Garcia ]
+  * Updated debian/control to fix wrong dependency.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 17 Dec 2014 17:27:50 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141212.1-0ubuntu1) vivid; urgency=low
+
+  [ Zoltán Balogh ]
+  * Add Qt 5 examples to the plugin dependencies Fixes LP: #1400710 (LP:
+    #1400710)
+
+  [ Benjamin Zeller ]
+  * Fix Bug lp:1355618 "Adding localization support in the template.
+    application" Add extra steps for QML only based projects, but only
+    automatically. enable them if certain conditions are met (LP:
+    #1355618)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 12 Dec 2014 12:49:11 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141211-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Migration wizard for automatic migration of qmake projects to run on
+    a Ubuntu device. Fix Bug lp:1398003 "Cannot run scope any more after
+    launching. it in debug mode" (LP: #1398003)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 11 Dec 2014 15:45:38 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141127-0ubuntu1) vivid; urgency=low
+
+  [ Zoltán Balogh ]
+  * Support password setting for new emulators. Fixes LP: #1390476 (LP:
+    #1390476)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 27 Nov 2014 15:42:28 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141126.1-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix Bugs lp:1396406 and lp:1322581 weird behaviour when multiple
+    devices are attached Only use 10 ports per device, everything > 30
+    ports breaks adb,. UbuntuLocalPortsManager will only return max 30
+    ports now (LP: #1322581, #1396406)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 26 Nov 2014 21:00:59 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141126-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix lp:1396143 "Remove obsolete framework references" (LP: #1396143)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 26 Nov 2014 08:31:04 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141124-0ubuntu1) vivid; urgency=low
+
+  [ Pete Woods ]
+  * Update scope template to use intltool to perform translations
+
+  [ Benjamin Zeller ]
+  * Fix fallback in chroot wrapper script
+
+  [ Rex Tsai (蔡志展) ]
+  * Fix does_device_hw_match_image_hw functions, it takes string not
+    return value. Remove carriage return in device_image_hardware. Fix
+    manual command same with the device_flashdaily .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 24 Nov 2014 19:08:22 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141122-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Make use of the new qmake-cross-armhf binary and add support for
+    qmake projects
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Sat, 22 Nov 2014 02:46:50 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141117.2-0ubuntu1) vivid; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1390838 "Invalid framework "ubuntu-core15.04-dev1"" by
+    providing a combobox in the "New project wizard". Fix Bug lp:1390837
+    "Invalid format for maintainer error". Fix problem with the
+    translation files (LP: #1390837, #1390838)
+  * Fix bug lp:1366822 "When creating the emulator it does not tell me
+    what logs to check ". Add a scope finalizer implementation (LP:
+    #1366822)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 17 Nov 2014 20:09:18 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+15.04.20141104.2-0ubuntu1) vivid; urgency=low
+
+  [ Pete Woods ]
+  * Add two new sub-templates for scopes using Qt (LP: #1386151)
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1387299 "Need to be able to create emulators for other
+    image channels". Make the create emulator state not cancellable, it
+    blocks the UI and does nothing (LP: #1387299)
+  * Fix bug lp:1387302 . "Support selection of the 14.10 final framework
+    version" Dynamically query frameworks from the server to make sure
+    the list. is up2date. Fall back to resource files or last query if
+    no network is available. Fix update problem in the manifest editor
+    (LP: #1387302)
+  * Fix Bug lp:1384853 "No way to remove a physical device from the
+    devices page". Fix bug lp:1388656 ""Reboot" should be "Restart" and
+    "Shutdown" should be "Shut Down" in Devices pane". Fix bug
+    lp:1388173 "Devices > (devicename) > "Has devloper mode enabled" has
+    typo". Fix bug lp:1357739 "Frequently fails to connect to emulator":
+    this bug results from missing phablet-tools as a dependency. (LP:
+    #1388656, #1357739, #1384853, #1388173)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 04 Nov 2014 15:04:39 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20141020-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Remove all references to cordova from plugin. Fix debug support:
+    since we switched to SSH stdout and stderr are. forwarded correctly
+    to us. So we really need to read stderr to pick up the gdb port
+    message Create the ubuntu-sdk configdirectory if it does not exist
+    right at. the beginning
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 20 Oct 2014 20:56:05 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20141017-0ubuntu1) utopic; urgency=low
+
+  [ Pete Woods ]
+  * Add translation support to scope templates
+
+  [ Benjamin Zeller ]
+  * Fix bug lp:1363857 "Use click-review from click-reviewers-tools".
+    Fix bug lp:1379689 "Add internationalization support to QML app
+    templates". Fix bug lp:1361936 "error information box is not
+    updated". Fix bug lp:1368521 "After choosing "Create emulator",
+    nothing happens. after that" Fix bug lp:1371807 "multi user problem
+    writing to /tmp/sdk.log" (LP: #1361936, #1363857, #1368521,
+    #1371807, #1379689)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 17 Oct 2014 10:16:41 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20141010-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix error warnings about overriding Actions. Fix missing devicepage
+    icons on trusty. Fix bug lp:1379644 "I can only get the test
+    configuration for scope. development" (LP: #1379644)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 10 Oct 2014 11:40:52 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20141009-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix Bug 1377090: "Overiding an app doesn't work". Fix Bug 1377094:
+    "Click review errors prevent applications from being. deployed to
+    the device" (LP: #1377090, #1377094)
+  * Refactor UI of devicespage. Fix Bug #1372633 "Device tab content
+    page needs to allow vertical. scrolling" (LP: #1372633)
+  * Add a TaskHandler, so we can open the links directly from the Issues
+    tab. Removed unused Settings. Review click packages before uploading
+    them to the phone. Show review errors in Issues output view.
+
+  [ Jean-Francois Moy ]
+  * Improve the HTML5 application template (LP: #1377928)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 09 Oct 2014 10:03:07 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20141002-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add a TaskHandler, so we can open the links directly from the Issues
+    tab. Removed unused Settings. Review click packages before uploading
+    them to the phone. Show review errors in Issues output view.
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 02 Oct 2014 09:56:10 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140930-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Support named click chroots.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 30 Sep 2014 11:39:24 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140925-0ubuntu1) utopic; urgency=low
+
+  [ Pete Woods ]
+  * Show headers in QtCreator for the scope template (LP: #1371010)
+  * Add new "empty" scope template
+
+  [ Benjamin Zeller ]
+  * Add runconfig option to disable the "app installed" check when
+    running a app. Add runconfig option to disable uninstall after the
+    app has finished. Ask the user if he wants to override the already
+    installed app .
+  * Make the simple template, really simple . make sure autopilot tests
+    work again .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 25 Sep 2014 14:44:34 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140915-0ubuntu1) utopic; urgency=low
+
+  [ CI bot ]
+  * Run pkcon with --allow-untrusted (LP: #1360582). (LP: #1360582)
+
+  [ Michael Vogt ]
+  * Tiny fix to set the options dialog as modal parent for the
+    "runClick" dialog when creating a click chroot.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 15 Sep 2014 06:10:55 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140912.3-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Put back the HTML5 template
+  * Add ubuntu-emulator to the dependencies. Fixes LP: #1367246 (LP:
+    #1367246)
+
+  [ CI bot ]
+  * Run pkcon with --allow-untrusted (LP: #1360582). (LP: #1360582)
+
+  [ Benjamin Zeller ]
+  * Less launcher output, add prefix so its clear if the output is from
+    launcher/app. Use default application directories to create control
+    files. Native Backend template now automatically substitutes the
+    correct architecture into the manifest file. Make sure the wizards
+    don't accept invalid characters .
+  * Make sure .ssh folder and authorized_keys2 file have the correct
+    owner and permissions
+
+  [ Pete Woods ]
+  * New scope template that talks to openweather API
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Michael Vogt ]
+  * Run pkcon with --allow-untrusted (LP: #1360582). (LP: #1360582)
+  * This branch cleans up the deploy script a little bit so that it
+    reports errors from e.g. scp/ssh to the user. It will also fail
+    early when a subcommand (like ssh) fails. (LP: #1366786)
+  * Another tiny branch. This makes it easier for the user to see when
+    his/her click package is deployed to the device. (LP: #1366791)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 12 Sep 2014 13:38:53 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140908-0ubuntu1) utopic; urgency=low
+
+  [ Michael Vogt ]
+  * Run pkcon with --allow-untrusted (LP: #1360582). (LP: #1360582)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 08 Sep 2014 09:47:27 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140903.3-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Adopt connectivity scripts to the new adbd policy
+  * Change templates to use the Ubuntu.Components 1.1 and set
+    useDeprecatedToolbar to false in MainView
+  * test environment setup and simple app enhancements
+
+  [ Benjamin Zeller ]
+  * check if app is already installed on the device before overwriting
+    it. redirect stdout and stderr to pipes we can read from the
+    launcher. refactor launcher to support scopes. pass hook to the
+    launcher, so multiple hooks are supported. make sure name in the
+    manifest file only contains lowercase letters when created from a
+    template. always package debughelper to get correct output. Get rid
+    of project type guessing. Enable Scopes in deploy configurations.
+
+  [ Maxim Ermilov ]
+  * we are switching to cordova-ubuntu by default. all qtcreator
+    integration will be done via separate plugin (
+    https://code.launchpad.net/qtcreator-plugin-cordova-ubuntu ).
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 03 Sep 2014 11:50:17 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140821-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add UbuntuCMakeCache. Add support for UBUNTU_MANIFEST_PATH cache
+    variable to support core. apps Fallback to search the manifest file
+    in builddir if the desktop file. path in the project dir manifest
+    file is not valid (core apps compatibility) Fix bug lp:1358381 "new
+    click-check-* scripts not shown in Validate. section of Ubuntu
+    Publish" (LP: #1358381)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 21 Aug 2014 07:27:06 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140819-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add real editors for manifest.json and apparmor files. Fix Bug
+    lp:1297021 (Plugin pollutes code dir with manifests). remove
+    manifest editors from packaging tab. cleanup Packaging Tab (credits
+    to bzoltan). (LP: #1297021)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 19 Aug 2014 10:52:54 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140812.1-0ubuntu1) utopic; urgency=low
+
+  [ Zygmunt Krynicki ]
+  * This branch fixes two problems: 3b5a62a Fix parameter check in
+    'device_search' script 831db0a Don't ignore devices with upper-case
+    serial number
+
+  [ Benjamin Zeller ]
+  * Fix bug LP:1338936 "Use Suru Icon theme for buttons". Fix Bug
+    lp:1355086 "welcome wizard "do not show again" does not work if you
+    click cancel". Disable runconfiguration if the app is running to
+    prevent execution of the same configuration multiple times. Make it
+    possible to create Kits even if the Device is not attached. Do not
+    crash if there is no deploy configuration. Do not change the project
+    name if it contains a cmake var (LP: #1338936, #1355086)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 12 Aug 2014 08:12:11 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140806-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add gdb-multiarch as a dependency lp:1338440. Save Emulator Settings
+    lp:1336154. Autostart Emulator when its not started lp:1336660. Show
+    a dialog that tells the user to attach the device and can wait. for
+    the device being ready (LP: #1338440, #1336154, #1336660)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 06 Aug 2014 16:23:36 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140805.1-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Quick and dirty fix for trusty development env, until we sorted out
+    how to handle frameworks and policy versions correctly
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 05 Aug 2014 11:40:36 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140804.1-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Apidocs should point to the currently used UI toolkit version
+    lp:1276695. Fixes bug: lp:1335883 "ubuntu qtcreator is removing user
+    files" (LP: #1335883, #1276695)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 04 Aug 2014 15:01:06 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140804-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Clean up the unnecessary file and directory checks in the
+    click_create_target
+
+  [ Benjamin Zeller ]
+  * Force scope project names to lowercase -Fix the firststart wizard to
+    use the correct device type id -Disable local scope in the template
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 04 Aug 2014 09:30:59 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140801-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Discover the processor type of the device and the emulator
+  * Use the click API to check if the chroot exists (LP: #1351065) (LP:
+    #1351065)
+
+  [ Benjamin Zeller ]
+  * Store architecture of a device in the devicetype ID. Fix all
+    existing devices and Kits .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 01 Aug 2014 16:05:25 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140731-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Deal with emulator names with any non white space characters
+
+  [ Benjamin Zeller ]
+  * Adding device runsupport for QML projects. Create a QtVersion per
+    chroot on the host. Fix deprecated warnings in the SDK launcher .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 31 Jul 2014 10:39:53 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140728.1-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Do not exit the click_destroy_target when umounting fails
+  * Move the click-reviewers-tools to the recommended packages (LP:
+    #1349052) (LP: #1349052)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 28 Jul 2014 17:40:26 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140728-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Custom qmake to deal with click chroots
+  * Enable channel selection when creating an emulator ( (LP: #1334691,
+    #1257711)
+
+  [ Michael Vogt ]
+  * README file is added to the project
+  * Added missing dialog/message box parents. (LP: #1346783)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 28 Jul 2014 09:38:56 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140724-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Making the webapp-container dependency arch-dependent
+  * Add tests to check Ubuntu plugins and validate the simple qml app
+    template
+
+  [ Benjamin Zeller ]
+  * Adding run support for HTML and webcontainer projects. Refactored
+    some code to make the project easier to maintain. Remove MenuItems
+    for HTML projects. Fix packaging widget to work correctly for the
+    new HTML configurations. Adding UbuntuHtmlBuildConfiguration. Add
+    TargetSetupPage to the new htmlproject wizard. Make sure trusty
+    users get a list of available frameworks based on the. Toolchain
+    they use Hardcode list of frameworks for now since click chroots are
+    broken .
+  * Fix execution of click review tools to handle package names with
+    spaces correctly
+
+  [ Alexandre Abreu ]
+  * Add a bit of documentation in the html5 template index to guide the
+    developer to the "import cordova runtime options" (LP: #1338445)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 24 Jul 2014 08:49:51 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140716-0ubuntu1) utopic; urgency=low
+
+  [ Alexandre Abreu ]
+  * Add the inspector flag for debugging html5 apps in desktop file
+    template (LP: #1341893)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 16 Jul 2014 04:46:37 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140711-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Improved webapp template with packaging support
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 11 Jul 2014 10:32:34 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140710-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Fix the scope template manifest file, add missing fields
+
+  [ Anthony Wong ]
+  * Supports the plural form of i18n.tr
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 10 Jul 2014 17:42:32 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140708-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Adding unit tests for UbuntuClickManifest
+  * Migrating Wizards to QtC custom wizard API and description files.
+    Dropping homegrown solution. Merged Scope wizards into one with a
+    Combobox to select between network/no network (LP: #1330397)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 08 Jul 2014 09:46:33 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140704.1-0ubuntu1) utopic; urgency=low
+
+  [ daker ]
+  * Make sure the webapp apparmor json file is valid
+  * Fixed param that causes the webapp-container to open http://cookies
+    (LP: #1327761)
+
+  [ Adnane Belmadiaf ]
+  * Fixed data-role name in the HTML5 app template (LP: #1335692)
+
+  [ Michael Vogt ]
+  * Some guidance to the webapp app.desktop template.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Jul 2014 17:41:00 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140704-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Migrate the device check script from the obsolate project
+
+  [ Benjamin Zeller ]
+  * Merge the Ubuntu and QtC welcome page into one.
+  * Use aa-clickquery to get correct policy version (LP: #1293586) (LP:
+    #1293586)
+  * Support SDK launcher for cmake based projects. Autocreate now can
+    create a ToolChain directly if none is available .
+
+  [ Michael Vogt ]
+  * Fix for the webapps app.desktop template.
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 04 Jul 2014 14:23:20 +0000
+
+qtcreator-plugin-ubuntu (3.1.1+14.10.20140616-0ubuntu1) utopic; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Migrating to Qt5.3 and QtC 3.1
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 16 Jun 2014 10:23:50 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140613-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Detect device arch and create kits accordingly
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 13 Jun 2014 17:29:41 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140611.2-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Add 14.10 target support (LP: #1328436) (LP: #1328436)
+  * Use unknown as developed ID when there is no LP ID available (LP:
+    #1324555) (LP: #1324555)
+
+  [ Benjamin Zeller ]
+  * Use only one SSH key for all ubuntu devices Move the storage
+    location of the SSH key to ~/.config/ubuntu-sdk Fixes LP:#1237923
+    (LP: #1237923)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 11 Jun 2014 13:50:36 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140609-0ubuntu2) utopic; urgency=medium
+
+  * test 
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Wed, 11 Jun 2014 06:52:33 +0200
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140609-0ubuntu1) utopic; urgency=low
+
+  [ Pete Woods ]
+  * Update scope templates to match released version of apparmor
+    templates
+
+  [ Benjamin Zeller ]
+  * Removed dead code. Code compiles without warnings now. Treat all
+    warnings as errors. Enable C++11 and use the override keyword . to
+    protect us from missing upstream API changes
+  * Add a fallback to UpstartAppLaunch in case the UbuntuAppLaunch is
+    not available (LP:#1327066) (LP: #1327066)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 09 Jun 2014 07:54:45 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140602-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Automatically add missing fields to manifest.json when its loaded
+  * Unittests for adb forward --list parser. Simple unittest for
+    /etc/lsb-release parser .
+
+  [ Alan Pope ]
+  * Switch eog to xdg-open to fix bug 1325272 (LP: #1325272)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 02 Jun 2014 11:32:11 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140527-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Install the app icon to click package in cmake projects
+
+  [ Benjamin Zeller ]
+  * Automatically add missing fields to manifest.json when its loaded
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 27 May 2014 05:17:20 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140522.1-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Add default icon to template projects
+
+  [ Benjamin Zeller ]
+  * Introduce the sdk-launcher tool that can run a click package.
+    Migrate QML, Go and HTML5 projects to the sdk-launcher .
+  * Use the correct desktop_file_hint when running a application
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 22 May 2014 14:47:05 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140521.1-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Install go click application on the device from QTC
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 21 May 2014 11:49:52 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140520.2-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Remove obsolate backend template and rename templates. Introduce the
+    qtcreator-plugin-go dependency as recommended package .
+
+  [ Benjamin Zeller ]
+  * Remove the need of attaching the device if its actually not
+    required. Fix building GO applications on the device .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 20 May 2014 15:23:09 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140520-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Add Go project integration and project wizard (no hard dependency on
+    the golang plugin). Fix a problem with apps not starting on the
+    phone. Add Utopic to the feature set .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 20 May 2014 10:14:23 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140516.2-0ubuntu1) utopic; urgency=low
+
+  [ Pete Woods ]
+  * Add click packaging for scopes
+
+  [ Benjamin Zeller ]
+  * Unittest for click validation output parser
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 16 May 2014 16:56:11 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140516-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Remove the -client parameter from the desktop file
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 16 May 2014 04:04:25 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140515-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Open file in existing qtcreator instance (LP: #1172844) (LP:
+    #1172844)
+
+  [ Benjamin Zeller ]
+  * Merge the emulator and device page. Add control facilites for
+    emulators. emulator control scripts .
+
+  [ CI bot ]
+  * Add a script to wait for the started emulator and return the serial
+    number
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 15 May 2014 15:36:50 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140512.1-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Move the UITK examples to recommended packages (LP: #1265689) (LP:
+    #1265689)
+
+  [ Benjamin Zeller ]
+  * Fallback to local policy detection if no device is detected Do not
+    hardcode policy version
+
+  [ Alexandre Abreu ]
+  * Add tab.js dependency to the html5 template (LP: #1311997)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 12 May 2014 18:05:52 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140509-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * Rename AppArmor tab to Security profile
+
+  [ Benjamin Zeller ]
+  * Implement editor for device displayName, shows on doubleclick
+
+  [ CI bot ]
+  * Integrate the device_wait_for_shell script into the device detection
+    process.
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 09 May 2014 11:52:56 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140508-0ubuntu1) utopic; urgency=low
+
+  [ Zoltán Balogh ]
+  * New script to wait for Unity8 shell on the given device
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 08 May 2014 15:27:14 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140507-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Implement metacall in menu.json, makes it possible to call
+    slots/signals/invokables. Restore the install package menu item for
+    cmake projects (LP: #1316783). Check if reviewer tools are installed
+    before running them (LP: #1316787) . (LP: #1316787, #1316783)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Wed, 07 May 2014 11:02:32 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.10.20140502.6-0ubuntu1) utopic; urgency=low
+
+  [ Benjamin Zeller ]
+  * Added new QML based devices mode. Reworked backend that handles
+    devices and emulators and put . it into QAbstractListModel derived
+    classes to control them from QML Fixed a bug with starting
+    applications on the device that don't use . a launcher Switched to
+    the RemoteLinux configuration widget , it provides better .
+    informations about the device state in the options dialog Easy
+    creation of Kits for devices that are not assigned (Autocreate Kit).
+
+  [ Jussi Pakkanen ]
+  * Minor fixes for scope preview template.
+
+  [ Alexandre Abreu ]
+  * Update webapp template to account for the latest & most up to date
+    changes (LP: #1313889)
+
+  [ David Barth ]
+  * This re-enables launching HTML5 apps on the device after the recent
+    interface change. (LP: #1311692)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Fri, 02 May 2014 16:22:49 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.04.20140415-0ubuntu1) trusty; urgency=low
+
+  [ Zoltán Balogh ]
+  * Change Ubuntu API link and add link to HTML5 docs (LP: #1303535)
+    (LP: #1303535)
+  * Remove .desktop linking to the ~/.local/share/applications
+  * Replace scripts and share paths even if there is no device (LP:
+    #1307713) (LP: #1307713)
+
+  [ Benjamin Zeller ]
+  * Added missing plugin dependencies. Refresh ADB on startup .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 15 Apr 2014 08:32:25 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.04.20140410.1-0ubuntu1) trusty; urgency=low
+
+  [ Benjamin Zeller ]
+  * Added Toolchains and Kit support to automatically.   detect a
+    available click chroot Added Devicesupport, connected Ubuntu devices
+    are.   automatically registered in QtCreator and can be set   for
+    different kits Added Deploysupport(CMake), the projects contents are
+    uploaded.   automatically using SSH after running make install on a
+    local   directory Added Run and Debugsupport: the command that
+    should be run.   on the device is read from the desktop file in the
+    deployed   directory. This means C++ and QML debugging work as well
+      as QML Profiling Dynamically forward ports, depending on adb
+    forward --list.   output. Adb Server is not restarted by default
+    anymore, only a press.   on the refresh button will trigger the
+    restart. That will fix   problems with failing adb scripts Added
+    local run support for Ubuntu projects .
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Thu, 10 Apr 2014 16:54:54 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.04.20140408-0ubuntu1) trusty; urgency=low
+
+  [ Zoltán Balogh ]
+  * Add dependency to unity-scope-tool (LP: #1297812) (LP: #1297812)
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ Łukasz 'sil2100' Zemczak ]
+  * Make the new unity-scope-tool dependency arch-specific, only for
+    those architectures supported by unity8
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Tue, 08 Apr 2014 10:55:43 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.04.20140329-0ubuntu1) trusty; urgency=low
+
+  [ Benjamin Zeller ]
+  * Split device string with a regex instead of a fixed number of spaces
+    (LP: #1297989) (LP: #1297989)
+  * grep desktop file path from the manifest, if its not in the root
+    dir. rsync instead of tar and scp .
+  * CMake projects are not properly handled when the project name is not
+    lowercase (LP: #1298566) (LP: #1298566)
+
+  [ David Planella ]
+  * Adds the required Author key to the scope template's .ini file. (LP:
+    #1297862)
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Sat, 29 Mar 2014 20:05:25 +0000
+
+qtcreator-plugin-ubuntu (3.0.1+14.04.20140324.1-0ubuntu1) trusty; urgency=medium
+
+  [ Zoltán Balogh ]
+  * New Unity scope template
+  * Forced clean up before running cmake
+  * Remove redundant file listing from HTML5 template (LP: #1289870)
+  * Remove redindant file listing from HTML5 template (LP: #1289870)
+    (LP: #1289870)
+
+  [ Benjamin Zeller ]
+  * Use Rsync to upload source to the device
+  * Automatically create click package after build on device
+  * Switch to framework ubuntu-sdk-14.04
+  * Adds combobox for selecting the framework in publish tab
+  * Remove Series from the scripts
+  * only save a manifest if it was opened before (or otherwise the codepath that sets defaults is never entered)
+  * filter the available targets by the framework specified in the manifest,
+    and automatically start to compile if only one target was found
+  * Save framework version only if the combobox does not show the empty/unknown framework item
+  * automatically change the policy version when the framework is changed
+  * Show frameworks with higher versions first when selecting a build target.
+  * List only frameworks that are available on the development host
+  * Pass user arguments to cmake running in the chroot (LP: #1292892)
+
+  
+  * Pass user arguments to cmake running in the chroot (LP: #1292892)
+    (LP: #1292892)
+  * enable menu item to build on device
+  * Removed libqt5v8-5-dev from device developertools
+  * Use Rsync to upload source to the device. Automatically create click
+    package after build.
+
+  [ Ubuntu daily release ]
+  * New rebuild forced
+
+  [ CI bot ]
+  * Join to the CI Train
+
+ -- Ubuntu daily release <ps-jenkins@lists.canonical.com>  Mon, 24 Mar 2014 08:57:44 +0000
+
+qtcreator-plugin-ubuntu (3.0.1-0ubuntu4) trusty; urgency=medium
+
+  * debian/shlibs.local: Include the shlibs info that qtcreator should.
+  * debian/control: Remove hard-coded qtcreator and libqt dependencies.
+  * debian/rules: Make dh_shlibdeps search plugin directories for deps.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 14 Mar 2014 21:24:39 -0600
+
+qtcreator-plugin-ubuntu (3.0.1-0ubuntu3) trusty; urgency=medium
+
+  * Rebuild against Qt 5.2 and QtWebKit 5.1.1
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 13 Mar 2014 19:09:59 +0000
+
+
+qtcreator-plugin-ubuntu (3.0.1-0ubuntu2) trusty; urgency=medium
+
+  [ Benjamin Zeller ]
+  * Fix ubuntuproject loading
+  * Add TargetSetupPage to application wizard, if a cmake project is created
+  * Missing dependency qtdeclarative5-controls-plugin
+  * Fixed compiler errors after merging the changes from the 2.8 branch
+
+  [ Zoltán Balogh ]
+  * Handle the case when the ubuntu-emulator directory does not exist (LP: #1287866)
+  * IDocument API changed
+  * the qt4project is renamed to qmakeproject in QtC3.0
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 10 Mar 2014 08:47:44 +0200
+
+qtcreator-plugin-ubuntu (3.0.1-0ubuntu1) trusty; urgency=medium
+
+  [ Alexandre Abreu ]
+  * Updateed HTML5 template
+  * Exec line from qtc html5 desktop which should refer to absolute path (LP: #1283183)
+  * Automatically copy the prebuild cordova runtime packages to the project structure after the download completes
+  * Update to follow new html5 project code layout necessary to embed the current cordova runtime.
+
+  [ Jean-Baptiste Lallement ]
+  * Enable autopkgtest to check that ubuntu-sdk is installable and qtcreator can be launched.
+
+  [ David Barth ]
+  * Pick the trusty (device release) for the armhf libs
+
+  [ Benjamin Zeller ]
+  * Plugin code adopted to QtCreator 3.0
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Thu, 05 Mar 2014 12:50:52 +0200
+
+qtcreator-plugin-ubuntu (2.8.1.3-0ubuntu1) trusty; urgency=medium
+
+  [ Alexandre Abreu ]
+  * Project template implements tab navigation by default, and has an
+    alternative pagestack example bundled in. (LP: #1271611)
+  * Enable the web inspector mode by default when running HTML5 apps from
+    QtCreator. (LP: #1281611)
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 18 Feb 2014 18:20:06 +0100
+
+qtcreator-plugin-ubuntu (2.8.1.2-0ubuntu2) trusty; urgency=medium
+
+  [ Alexandre Abreu ]
+  * Fix location and name of cordova runtime. (LP: #1281012)
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Tue, 18 Feb 2014 09:35:50 +0100
+
+qtcreator-plugin-ubuntu (2.8.1.2-0ubuntu1) trusty; urgency=medium
+
+  [Benjamin Zeller]
+  * Enable Publish tab if the click-review tools are installed
+  * Show detailed information about a error under the validation treeview
+  * Install cmake to the click chroots
+  * Packaging tab is renamed to Publish
+  * Parser for click-run-checks output and show results in a itemview
+  * Fix run on device for cmake projects
+  * New cmake project template
+  * cmake project deployment to the device
+  * Automatically validate click packages created from CMake projects
+  * Build click package for cmake projects
+  * The  menu.json parser is refactored to show menus only in a special context
+  * New option to menu.json if a clicktarget is required for executing the action
+  * Tweaking build files to allow local build.
+  * Do not ship a comment in the desktop file, because manifest should take precedence
+  * The manifest desciption always takes precedence over the desktop file (LP: #1264404)
+  * Read script output with QString::fromLocal8Bit instead of fromLatin1 (LP: #1211169)
+  * Added cmake build and maintenance support for click chroots
+
+  [Alexandre Abreu]
+  * HTML5 app deployment on device is fixed
+  * Fixed HTML5 template to have a cleaner example of tabs implementation
+  * Updated HTML5 tab structure
+
+  [David Barth]
+  * Tool to download a pre-compiled cordova runtime (LP: #1277667)
+
+  [Zoltan Balogh]
+  * Emulator features rebased on ubuntu-emulator
+  * Remove forced update of the maintainer in the manifest.json (LP: #1274265)
+  * Removed gksu from the dependency list (LP: #1235531)
+  * The click package reviewing tool is executed on the click package created in the Packaging tab.
+  * Enable scope templates on Trusty (LP: #1263593) 
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Thu, 13 Feb 2014 11:50:52 +0200
+
+qtcreator-plugin-ubuntu (2.8.1.1-0ubuntu1) trusty; urgency=low
+
+  [ Timo Jyrinki ]
+  * Automatic snapshot from revision 52 (bootstrap)
+
+  [ Zoltán Balogh ]
+  * Fixing security policy groups saving bug (LP: #1252965)
+  * Welcome screen renamed from Touch to Ubuntu
+  * Cordova HTMl5 and HTML5 templates are merged
+  * Simple webapp template added
+  * References to the "Touch" platform are removed
+  
+ -- Zoltán Balogh <zoltan@bakter.hu>  Mon, 25 Nov 2013 14:13:21 +0200
+
+qtcreator-plugin-ubuntu (2.8.1bzr56saucy0+testing6+0newqtc1ubuntu1) UNRELEASED; urgency=medium
+
+  * local build
+
+ -- Benjamin Zeller <benjamin@zeller-online.org>  Thu, 16 Jan 2014 08:44:37 +0100
+
+qtcreator-plugin-ubuntu (2.8.1bzr56saucy0+testing6+0newqtc1) trusty; urgency=low
+
+  * qt4project renamed to qmakeproject
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Thu, 05 Dec 2013 10:22:10 +0100
+
+qtcreator-plugin-ubuntu (2.8.1-0ubuntu1) trusty; urgency=low
+
+  [ Juhapekka Piiroinen ]
+  * Fix plugin to compile against Qt Creator 2.8.1.
+  * Platfom development mode needs write access on the RO image (LP: #1229129)
+  * Do not hard code the phablet user (LP: #1223363)
+  * Click package script removes plugin includes from the desktop file (LP: #1220939)
+  * Fixed bug where click packaging manifest files wasnt created on new application creation.
+  * Moved misc buttons from Devices tabs under Settings page.
+  * Added more Settings pages.
+  * execute sanity checks for click packages after generation (LP: #1230413)
+  * Can't run html5 apps on device from SDK (LP: 1232061)
+  * created click pkg for cordova desktop has qmlscene exec (LP: #1232213)
+  * do not execute i18n stuff on all project files (LP: #1176433)
+  * Internationalization workflow improvements (LP: #1177449)
+  * [i18n] The .pot file generator should provide relative paths (LP: #1180325)
+  * Split out reserved security policies from regular ones (LP: #1227814)
+  * Fixed an issue where Click package creation or installation wasnt visible for cordova projects.
+
+  [ Maxim Ermilov ]
+  * Fixed CordovaUbuntuProjectManager to compile against Qt Creator 2.8
+
+  [ Zoltán Balogh ]
+  * Saving the AppArmor manifest file when Click package is created (LP: #1233683)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 23 Sep 2013 10:01:41 +0300
+
+qtcreator-plugin-ubuntu (2.7.2-0ubuntu5) saucy; urgency=low
+
+  * Cannot add device: device key expected before created (LP: #1227820)
+
+ -- Juhapekka Piiroinen <juhapekka.piiroinen@canonical.com>  Fri, 20 Sep 2013 11:04:13 +0300
+
+qtcreator-plugin-ubuntu (2.7.2-0ubuntu4) saucy; urgency=low
+
+  * If no device is present, try to use the system package to
+    detect security policy groups, else, manual entry (LP: #1227618)
+
+ -- Juhapekka Piiroinen <juhapekka.piiroinen@canonical.com>  Thu, 19 Sep 2013 16:23:02 +0300
+
+qtcreator-plugin-ubuntu (2.7.2-0ubuntu3) saucy; urgency=low
+
+  * USB Device connection / disconnection detection.
+  * Refactored Menus.
+  * Can't set version number in Packaging form (LP: #1212326)
+  * QtC cuts folder names when building on the device (LP: #1212937)
+  * Click packages need to exclude the .bzr dir (LP: #1214628)
+  * Force lower case click package name (LP: #1219877)
+  * Packaging resets package name, other attributes to default every 
+    time it's opened (LP: #1219948)
+  * please provide gui for security manifest (LP: #1221407)
+  * Cannot enable developer mode on read-only image (LP: #1223301)
+  * Cannot launch application through qtcreator (LP: #1225178)
+  * Application installation script problems (LP: #1213902)
+  * Comment field in .desktop file should be generated on the fly 
+    (LP: #1223388)
+  * SDK should set applicationName to "name" value in the click manifest 
+    (LP: #1227085)
+
+ -- Juhapekka Piiroinen <juhapekka.piiroinen@canonical.com>  Wed, 18 Sep 2013 15:36:58 +0300
+
+qtcreator-plugin-ubuntu (2.7.2-0ubuntu2) saucy; urgency=low
+
+  [ Zoltan Balogh ]
+  * Fix app id and the dbus session adress (LP: #1221414).
+  * Use pkcon to install click packages (LP: #1223014)
+
+  [ Timo Jyrinki ]
+  * Add Cordova dependencies to the Cordova plugin (LP: #1209385)
+  * Recommend ubuntu-sdk from qtcreator-plugin-ubuntu (LP: #1198084)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Mon, 16 Sep 2013 08:58:21 +0300
+
+qtcreator-plugin-ubuntu (2.7.2-0ubuntu1) saucy; urgency=low
+
+  [ Juhapekka Piiroinen ]
+  * Move the plugin code from qtcreator source package to here, fix install
+  * Depend on qtcreator-dev
+
+  [ Zoltán Balogh ]
+  * Fixing the build dependencies
+
+  [ Timo Jyrinki ]
+  * Follow Qt Creator version numbering but slightly higher to allow upgrades
+  * Move icon out of debian/ directory
+  * Remove provides/conflicts/replaces for old PPA ubuntu-qtcreator-plugins
+  * Clean out packaging with wrap-and-sort -a -t
+  * Add recommended cflags and QT_SELECT to debian/rules
+  * Make dependencies stricter. Require Qt Creator >= 2.7.1 and recommend 
+    the plugins from the -common packages.
+  * A file moved from ubuntu plugin package to cordova plugin package, adding 
+    Replaces.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Fri, 06 Sep 2013 07:12:02 +0300
+
+qtcreator-plugin-ubuntu (0.1-0ubuntu3) saucy; urgency=low
+
+  * The Cordova project type in the template definition file had a typo. The
+    fileName was wrongly filename. So the .desktop file was not created. 
+    (LP: #1216046)
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Tue, 27 Aug 2013 22:15:56 +0300
+
+qtcreator-plugin-ubuntu (0.1-0ubuntu2) saucy; urgency=low
+
+  * New snapshot relese from bazaar revision 17.
+    - Add desktop file to the Cordova template.
+    - Depend on gksu from the common packages (LP: #1209369)
+    - Fix bug #1197537 (LP: #1197537)
+    - xgettext is called using --from-code=UTF-8 (LP: #1183045)
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Tue, 27 Aug 2013 17:18:31 +0300
+
+qtcreator-plugin-ubuntu (0.1-0ubuntu1) saucy; urgency=low
+
+  [ Juhapekka Piiroinen ]
+  * Initial release
+
+  [ Timo Jyrinki ]
+  * Automatic snapshot from revision 3 (bootstrap)
+
+  [ Zoltán Balogh ]
+  * Adopt to new syntax of the phablet-flash
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Thu, 15 Aug 2013 10:19:41 +0300

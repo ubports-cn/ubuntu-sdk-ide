@@ -1,0 +1,71 @@
+fcitx-qt5 (1.0.1-0ubuntu2) wily; urgency=medium
+
+  * No-change rebuild against Qt 5.4.2.
+
+ -- Timo Jyrinki <timo-jyrinki@ubuntu.com>  Thu, 11 Jun 2015 21:28:47 +0300
+
+fcitx-qt5 (1.0.1-0ubuntu1) vivid; urgency=medium
+
+  * New upstream minor release.
+
+ -- Aron Xu <happyaron@ubuntu.com>  Thu, 26 Mar 2015 04:45:56 +0800
+
+fcitx-qt5 (1.0.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Update debian/copyright
+  * Bump package name to libfcitx-qt5-1.
+  * Add extra-cmake-modules to B-D
+  * Update install file and symbols
+  * Update homepage, update description of transitional package
+
+ -- Aron Xu <aron@debian.org>  Tue, 10 Feb 2015 01:57:55 +0800
+
+fcitx-qt5 (0.1.2-4) experimental; urgency=medium
+
+  * Update symbols file for arm and power architectures.
+
+ -- Aron Xu <aron@debian.org>  Mon, 17 Nov 2014 23:02:02 +0800
+
+fcitx-qt5 (0.1.2-3) experimental; urgency=medium
+
+  * Allow parallel building.
+  * Transit package names to libfcitx-qt5 and friends.
+  * Remove unused ${shlib:Depends}.
+  * Update copyright information.
+  * Disable DH_VERBOSE.
+  * Bump std-ver to 3.9.6
+  * Add symbols file for library package.
+
+ -- Aron Xu <aron@debian.org>  Tue, 11 Nov 2014 00:09:01 +0800
+
+fcitx-qt5 (0.1.2-2) unstable; urgency=low
+
+  * Add libegl1-mesa-dev to B-D (Closes: #753204)
+    Thanks lisandro@d.o for the solution.
+
+ -- Aron Xu <aron@debian.org>  Sun, 06 Jul 2014 01:44:29 +0800
+
+fcitx-qt5 (0.1.2-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Aron Xu <aron@debian.org>  Thu, 29 May 2014 22:09:29 +0800
+
+fcitx-qt5 (0.1.1-3) unstable; urgency=low
+
+  * debian/control: recommends fcitc-frontend-qt5.
+
+ -- Aron Xu <aron@debian.org>  Mon, 07 Oct 2013 20:37:17 +0800
+
+fcitx-qt5 (0.1.1-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Aron Xu <aron@debian.org>  Sun, 06 Oct 2013 17:31:49 +0800
+
+fcitx-qt5 (0.1.1-1) experimental; urgency=low
+
+  * Initial release (Closes: #708322).
+
+ -- Aron Xu <aron@debian.org>  Wed, 15 May 2013 14:13:09 +0800

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=%ClickHookName%
+Exec=webapp-container --inspector ./www/index.html
+Icon=%ProjectName%.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

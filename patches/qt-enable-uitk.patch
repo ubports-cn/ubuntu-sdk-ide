@@ -1,0 +1,6 @@
+[submodule "ubuntu-sdk"]
+	depends = qtbase qttools qtdeclarative qtfeedback qtpim
+	path = ubuntu-sdk
+	branch = 5.6
+	status = addon
+	project = ubuntu-sdk.pro

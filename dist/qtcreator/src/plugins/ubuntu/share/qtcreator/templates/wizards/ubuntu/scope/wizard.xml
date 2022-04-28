@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wizard version="1" kind="project" firstpage="10" id="C_UbuntuUnityScope" category="A.UbuntuProject"
+        platformIndependent="true" 
+        class="ubuntu-project-cmake"
+        featuresRequired=""
+        >
+    <icon>../share/ubuntu.png</icon>
+    <description>A simple C++ based Unity Scope</description>
+    <displayname>Unity Scope (Current)</displayname>
+    <displaycategory>Ubuntu</displaycategory>
+    <files>
+        <file source="src/CMakeLists.txt"/>
+        <file source="src/data/displayName.ini.in" target="src/data/%ClickHookName:l%.ini.in"/>
+        <file source="src/data/displayName-settings.ini.in" target="src/data/%ClickHookName:l%-settings.ini.in"/>
+        <file source="src/data/icon.png" binary="true"/>
+        <file source="src/data/logo.png" binary="true"/>
+        <file source="src/data/screenshot.png" binary="true"/>
+        <file source="src/client.cpp"/>
+        <file source="src/client.h"/>
+        <file source="src/localization.h"/>
+        <file source="src/preview.cpp"/>
+        <file source="src/preview.h"/>
+        <file source="src/query.cpp"/>
+        <file source="src/query.h"/>
+        <file source="src/scope.cpp" openeditor="true"/>
+        <file source="src/scope.h"/>
+
+        <file source="po/CMakeLists.txt"/>
+        <file source="po/displayName.pot" target="po/%ProjectName:l%.pot"/>
+        <file source="po/Makefile.in.in"/>
+        <file source="po/POTFILES.in"/>
+
+        <file source="tests/server/forecast/Manchester,uk.json"/>
+        <file source="tests/server/forecast/Manchester,uk.xml"/>
+        <file source="tests/server/forecast/London,uk.json"/>
+        <file source="tests/server/forecast/London,uk.xml"/>
+        <file source="tests/server/weather/Manchester,uk.json"/>
+        <file source="tests/server/weather/Manchester,uk.xml"/>
+        <file source="tests/server/weather/London,uk.json"/>
+        <file source="tests/server/weather/London,uk.xml"/>
+        <file source="tests/server/server.py"/>
+        <file source="tests/CMakeLists.txt"/>
+        <file source="tests/unit/CMakeLists.txt"/>
+        <file source="tests/unit/test-scope.py"/>
+
+        <file source="CMakeLists.txt" openproject="true"/>
+        <file source="displayName.apparmor" target="%ClickHookName:l%.apparmor"/>
+        <file source="manifest.json.in" openeditor="true"/>
+        <file source="readme.txt"/>
+    </files>
+
+    <!-- Create a 2nd wizard page with click package parameters -->
+    <fieldpagetitle>Click package parameters</fieldpagetitle>
+    <fields>
+			<field mandatory="true" name="ClickDomain">
+			  <fieldcontrol class="QLineEdit" validator='^[A-Za-z0-9-]+$'
+			                defaulttext="" placeholdertext="Nickname"/>
+			  <fielddescription>Nickname:</fielddescription>
+			</field>
+        <field mandatory="true" name="ClickMaintainer">
+            <fieldcontrol class="QLineEdit" validator='^[^"]+$'
+                            defaulttext="" placeholdertext="Maintainer"/>
+            <fielddescription>Maintainer:</fielddescription>
+        </field>
+        <field mandatory="true" name="ClickHookName">
+            <fieldcontrol class="QLineEdit" validator='^[A-Za-z0-9.-]+$'
+                            defaulttext="%ProjectName%" placeholdertext="scope hook name"/>
+            <fielddescription>Scope name:</fielddescription>
+        </field>
+				<field name="ClickFrameworkVersion">
+				    <fieldcontrol class="QComboBox" defaultindex="0">
+				        <comboentries>
+									<!-- Do not add any other frameworks here, they are populated at runtime, this is just a dummy framework to make sure we can find the combobox -->
+									<comboentry value="ubuntu-sdk-dummy-framework">
+				              <comboentrytext>Dummy Framework</comboentrytext>
+				          </comboentry>
+				        </comboentries>
+				    </fieldcontrol>
+				    <fielddescription>Framework:</fielddescription>
+				</field>
+        <field name="ConfinementType">
+            <fieldcontrol class="QComboBox" defaultindex="0">
+                <comboentries>
+                    <comboentry value="ubuntu-scope-network">
+                        <comboentrytext>Scope with network access</comboentrytext>
+                    </comboentry>
+                    <!--
+                    <comboentry value="ubuntu-scope-local-content">
+                        <comboentrytext>Scope with local content</comboentrytext>
+                    </comboentry>
+                    -->
+                </comboentries>
+            </fieldcontrol>
+            <fielddescription>Confinement type:</fielddescription>
+        </field>
+        <field name="ContentType">
+            <fieldcontrol class="QComboBox" defaultindex="0">
+                <comboentries>
+                    <comboentry value="network-netcpp-qjson">
+                        <comboentrytext>Qt scope using HTTP+JSON API</comboentrytext>
+                    </comboentry>
+                    <comboentry value="network-netcpp-qxml">
+                        <comboentrytext>Qt scope using HTTP+XML API</comboentrytext>
+                    </comboentry>
+                    <comboentry value="network-netcpp-json">
+                        <comboentrytext>Pure C++ scope using HTTP+JSON API</comboentrytext>
+                    </comboentry>
+                    <comboentry value="empty">
+                        <comboentrytext>Empty scope</comboentrytext>
+                    </comboentry>
+                </comboentries>
+            </fieldcontrol>
+            <fielddescription>Template type:</fielddescription>
+        </field>
+    </fields>
+    <validationrules>
+        <validationrule condition='/^(.*)\s+&lt;(.*@.*)&gt;$/.test("%ClickMaintainer%")'>
+            <message>Invalid format for maintainer (should be like "Joe Bloggs &lt;joe.bloggs@isp.com&gt;")</message>
+        </validationrule>
+    </validationrules>
+</wizard>

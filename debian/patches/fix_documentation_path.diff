@@ -1,0 +1,17 @@
+---
+ src/plugins/coreplugin/icore.cpp |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: qtcreator/dist/qtcreator/src/plugins/coreplugin/icore.cpp
+===================================================================
+--- qtcreator.orig/dist/qtcreator/src/plugins/coreplugin/icore.cpp
++++ qtcreator/dist/qtcreator/src/plugins/coreplugin/icore.cpp
+@@ -420,7 +420,7 @@ QString ICore::userResourcePath()
+ QString ICore::documentationPath()
+ {
+     const QString docPath = QLatin1String(Utils::HostOsInfo::isMacHost()
+-                                            ? "/../Resources/doc" : "/../share/doc/qtcreator");
++                                            ? "/../Resources/doc" : "/../share/qtcreator/doc");
+     return QDir::cleanPath(QCoreApplication::applicationDirPath() + docPath);
+ }
+ 

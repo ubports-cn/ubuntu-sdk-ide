@@ -1,0 +1,34 @@
+#!/bin/bash
+# Copyright 2013 Canonical Ltd.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation; version 2.1.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Author: Zoltán Balogh <zoltan.balogh@canonical.com>
+
+set -e
+
+IFS=$'\n'
+
+for EMULATOR_INFO in `ubuntu-emulator list 2>&1|grep -v "no such file or directory"`
+do
+	if [[ ${EMULATOR_INFO} =~ ^([A-Za-z0-9._%+-]+)([^ ]*) ]]; then
+		NAME="${BASH_REMATCH[1]}"
+		REST="${BASH_REMATCH[2]}"
+		DEVICE_FILE="${HOME}/.local/share/ubuntu-emulator/${NAME}/.device"
+		if [ -f ${DEVICE_FILE} ]; then
+			ARCH=`cat  ${DEVICE_FILE}`
+ 			ARCH=${ARCH//[[:blank:]]/}
+			echo "$NAME${REST},arch=$ARCH"
+		fi
+	fi
+done    

@@ -1,0 +1,110 @@
+Source: qtcreator-plugin-ubuntu
+Section: devel
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Build-Depends: debhelper (>= 9),
+               libqt5widgets5 (>= 5.3),
+               libqt5dbus5 (>= 5.3),
+               libsqlite3-dev,
+               qt5-qmake (>= 5.3),
+               qtcreator-dev (>= 3.5.0~),
+               qtdeclarative5-dev-tools (>= 5.3),
+               qtdeclarative5-private-dev (>= 5.3),
+               qttools5-dev-tools (>= 5.3),
+               qtxmlpatterns5-dev-tools,
+               libudev-dev,
+               libicu-dev,
+               libglib2.0-dev,
+               pkg-config,
+Standards-Version: 3.9.4
+Homepage: https://launchpad.net/qtcreator-plugin-ubuntu
+# If you aren't a member of ~ubuntu-sdk-team but need to upload packaging changes,
+# just go ahead. ~ubuntu-sdk-team will notice and sync up the code again.
+Vcs-Bzr: https://code.launchpad.net/~ubuntu-sdk-team/qtcreator-plugin-ubuntu/trunk
+XS-Testsuite: autopkgtest
+
+Package: qtcreator-plugin-ubuntu
+Architecture: any
+Depends: android-tools-adb,
+         lxd,
+         ubuntu-sdk-tools,
+         click,
+         click-dev,
+         click-doc,
+         click-apparmor,
+         qtcreator-plugin-ubuntu-common,
+         ubuntu-ui-toolkit-doc,
+         rsync,
+         gdb-multiarch,
+         click-reviewers-tools,
+         phablet-tools,
+         python-dbus,
+         ${shlibs:Depends},
+         ${misc:Depends},
+Recommends: ubuntu-sdk,
+            ubuntu-ui-toolkit-examples,
+            qtbase5-examples,
+            qtdeclarative5-examples,
+            qt3d5-examples,
+            qtlocation5-examples,
+            qtmultimedia5-examples,
+            qtsensors5-examples,
+            qtsvg5-examples,
+            qttools5-examples,
+            qtxmlpatterns5-examples,
+            libu1db-qt5-examples,
+            qtconnectivity5-examples,
+            qtsystems5-examples,
+            qtcreator-plugin-go,
+Suggests:
+            ubuntu-emulator
+Description: Ubuntu plugin for Qt Creator IDE
+ Qt Creator is a lightweight, cross-platform integrated development
+ environment (IDE) designed to make development with the Qt application
+ framework even faster and easier.
+ .
+ This package contains the Ubuntu plugin for Qt Creator, providing
+ deeper integration for developing applications for Ubuntu using the
+ Ubuntu UI Toolkit. It also introduces an Ubuntu themed welcome
+ screen.
+
+Package: qtcreator-plugin-ubuntu-common
+Architecture: all
+Depends: ubuntu-sdk-qmake-extras,
+         ${misc:Depends},
+Recommends: qtcreator-plugin-ubuntu
+Replaces: qtcreator-plugin-ubuntu (<= 2.7.1-0ubuntu4),
+Conflicts: qtcreator-plugin-ubuntu (<= 2.7.1-0ubuntu4),
+Description: Common data files for the Ubuntu plugin for Qt Creator IDE
+ Qt Creator is a lightweight, cross-platform integrated development
+ environment (IDE) designed to make development with the Qt application
+ framework even faster and easier.
+ .
+ This package contains the runtime data files for the Ubuntu plugin for
+ Qt Creator IDE.
+
+Package: qtcreator-plugin-ubuntu-autopilot
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         autopilot-qt5,
+         dpkg-dev,
+         libqt5test5,
+         libqt5widgets5,
+         python-autopilot (>= 1.4),
+         python-fixtures,
+         python-gi,
+         python-mock,
+         python-testscenarios,
+         python-testtools,
+         python3-fixtures,
+         python3-gi,
+         python3-testscenarios,
+         python3-testtools,
+         python3-autopilot (>= 1.4),
+         qttestability-autopilot,
+         ubuntu-ui-toolkit-examples,
+         qtcreator-plugin-ubuntu,
+Description: Test package for Ubuntu plugin for Qt Creator IDE
+ Autopilot tests for the Ubuntu plugin for Qt Creator IDE package
+

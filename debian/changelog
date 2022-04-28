@@ -1,0 +1,18 @@
+ubuntu-sdk-ide (4.1.0) trusty; urgency=medium
+
+  * Upgrade to QtC 4.1
+  * Backend rewrite to use LXD based builders
+
+ -- Benjamin Zeller <benjamin.zeller@canonical.com>  Mon, 25 Apr 2016 12:54:38 +0200
+
+ubuntu-sdk-ide (3.5.1) vivid; urgency=medium
+
+  * OTA7 update 
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Wed, 14 Oct 2015 11:57:31 +0300
+
+ubuntu-sdk-ide (3.5.0+15.10.20150829-0ubuntu1~0vivid9) vivid; urgency=medium
+
+  * Initial release
+
+ -- Zoltán Balogh <zoltan@bakter.hu>  Wed, 12 Aug 2015 09:39:07 +0300

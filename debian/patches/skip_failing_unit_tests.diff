@@ -1,0 +1,32 @@
+Index: qtcreator/dist/qtcreator/tests/auto/auto.pro
+===================================================================
+--- qtcreator.orig/dist/qtcreator/tests/auto/auto.pro	2014-04-08 10:18:58.684264000 +0000
++++ qtcreator/dist/qtcreator/tests/auto/auto.pro	2014-04-08 10:20:30.671316474 +0000
+@@ -4,10 +4,8 @@
+     changeset \
+     clangstaticanalyzer \
+     cplusplus \
+-    debugger \
+     diff \
+-    extensionsystem \
+     externaltool \
+     environment \
+     generichighlighter \
+     profilewriter \
+@@ -15,11 +13,13 @@
+     qtcprocess \
+     json \
+     utils \
+-    filesearch \
+     mapreduce \
+     runextensions \
+-    sdktool \
+-    valgrind
++    filesearch
++
++!unix:SUBDIRS += debugger
++!unix:SUBDIRS += extensionsystem
++!unix:SUBDIRS += valgrind
+ 
+ qtHaveModule(qml): SUBDIRS += qml
+ qtHaveModule(quick): SUBDIRS += timeline
